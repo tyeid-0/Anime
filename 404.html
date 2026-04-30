@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toddy · Anime World</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="gbg"></div>
+<div class="ggrid"></div>
+
+<header>
+  <div class="hrow1">
+    <div class="logo">📺 TODDY</div>
+    <div class="logo-sep"></div>
+    <div class="page-title" id="page-title">Assistindo</div>
+    <a class="mal-link" href="https://myanimelist.net/profile/XxT0DDyxX" target="_blank">MAL ↗</a>
+  </div>
+</header>
+
+<!-- Bottom Navigation -->
+<nav class="bnav">
+  <button class="bnav-item on" onclick="navTo('assistindo',this)" data-label="Assistindo">
+    <span class="bnav-ico">▶️</span>
+    <span class="bnav-lbl">MAL</span>
+  </button>
+  <button class="bnav-item" onclick="navTo('top',this)" data-label="Top 30">
+    <span class="bnav-ico">🌟</span>
+    <span class="bnav-lbl">Top 30</span>
+  </button>
+  <button class="bnav-item" onclick="navTo('generos',this)" data-label="Gêneros">
+    <span class="bnav-ico">🎭</span>
+    <span class="bnav-lbl">Gêneros</span>
+  </button>
+  <button class="bnav-item" onclick="navTo('favchars',this)" data-label="Personagens">
+    <span class="bnav-ico">❤️</span>
+    <span class="bnav-lbl">Chars</span>
+  </button>
+  <button class="bnav-item" onclick="toggleMore()" id="more-btn" data-label="Mais">
+    <span class="bnav-ico">⋯</span>
+    <span class="bnav-lbl">Mais</span>
+  </button>
+</nav>
+
+<!-- Popup "Mais" -->
+<div class="more-overlay" id="more-overlay" onclick="closeMore()"></div>
+<div class="more-popup" id="more-popup">
+  <div class="more-popup-title">Mais páginas</div>
+  <button class="more-item" onclick="navTo('primeiros',null)">🌱 Primeiros Animes</button>
+  <button class="more-item" onclick="navTo('musicas',null)">🎵 Músicas</button>
+  <button class="more-item" onclick="navTo('marcos',null)">🏆 Marcos</button>
+  <button class="more-item" onclick="navTo('gacha',null)">🎮 Gacha</button>
+</div>
+
+
+<main>
+
+<!-- ══ INÍCIO ══ -->
+<!-- ══ PRIMEIROS ══ -->
+<div class="tab" id="tab-primeiros">
+<div class="sec">
+  <div class="sec-hd"><div class="sec-n">01</div><div><div class="sec-eye">Começos</div><h2 class="sec-ttl">Primeiros Animes</h2></div><div class="sec-line"></div></div>
+  <div class="primeiros-grid">
+    <div class="pc"><div class="pc-num">#1</div><img src="https://upload.wikimedia.org/wikipedia/pt/e/e2/Ponyo_p%C3%B4ster.png" loading="lazy"><div class="pc-info"><p class="pc-name">Ponyo</p></div></div>
+    <div class="pc"><div class="pc-num">#2</div><img src="https://myanimelist.net/images/anime/1887/92364.jpg" loading="lazy"><div class="pc-info"><p class="pc-name">dragon ball</p></div></div>
+    <div class="pc"><div class="pc-num">#3</div><img src="https://myanimelist.net/images/anime/2/73700.jpg" loading="lazy"><div class="pc-info"><p class="pc-name">Yamada-kun e as 7 Bruxas</p></div></div>
+    <div class="pc"><div class="pc-num">#4</div><img src="https://m.media-amazon.com/images/M/MV5BNWEyODg4ZDQtYmEzYS00ZmU2LWJhY2QtMmI3M2U3Y2EwOGU0XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="pc-info"><p class="pc-name">Mikakunin de Shinkoukei</p></div></div>
+    <div class="pc"><div class="pc-num">#5</div><img src="https://m.media-amazon.com/images/M/MV5BNGQwZmI4YjAtYWEzZC00ZmQxLTliNTktMzFmNDJiM2Q3ZDU5XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="pc-info"><p class="pc-name">Senko-san</p></div></div>
+    <div class="pc"><div class="pc-num">#6</div><img src="https://cdn.myanimelist.net/images/anime/1074/111944.jpg" loading="lazy"><div class="pc-info"><p class="pc-name">No Game No Life</p></div></div>
+    <div class="pc"><div class="pc-num">#7</div><img src="https://myanimelist.net/images/anime/1444/148976.webp" loading="lazy"><div class="pc-info"><p class="pc-name">Shokugeki no Souma</p></div></div>
+    <div class="pc"><div class="pc-num">#8</div><img src="https://myanimelist.net/images/anime/1292/147431.jpg" loading="lazy"><div class="pc-info"><p class="pc-name">To LOVE-Ru</p></div></div>
+    <div class="pc"><div class="pc-num">#9</div><img src="https://myanimelist.net/images/anime/1795/95088.jpg" loading="lazy"><div class="pc-info"><p class="pc-name">Violet Evergarden</p></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ GÊNEROS ══ -->
+<div class="tab" id="tab-generos">
+<div class="sec">
+  <div class="sec-hd"><div class="sec-n">02</div><div><div class="sec-eye">Categorias</div><h2 class="sec-ttl">Gêneros</h2></div><div class="sec-line"></div></div>
+
+  <!-- SEARCH -->
+  <div class="search-bar">
+    <span class="search-ico">🔍</span>
+    <input id="srch" type="text" placeholder="Buscar anime por nome..." oninput="doSearch(this.value)">
+    <button class="search-clr" onclick="clearSrch()">✕</button>
+  </div>
+  <div class="chips">
+    <button class="chip on" onclick="filterChip('todos',this)">Todos</button>
+    <button class="chip" onclick="filterChip('acao',this)">🔥 Ação</button>
+    <button class="chip" onclick="filterChip('drama',this)">🎭 Drama</button>
+    <button class="chip" onclick="filterChip('romance',this)">💖 Romance</button>
+    <button class="chip" onclick="filterChip('comedia',this)">😂 Comédia</button>
+    <button class="chip" onclick="filterChip('fantasia',this)">🪄 Fantasia</button>
+    <button class="chip" onclick="filterChip('scifi',this)">🚀 Sci-Fi</button>
+    <button class="chip" onclick="filterChip('terror',this)">👁️ Terror</button>
+    <button class="chip" onclick="filterChip('psicologico',this)">🧠 Psicológico</button>
+    <button class="chip" onclick="filterChip('isekai',this)">🌀 Isekai</button>
+    <button class="chip" onclick="filterChip('gore',this)">🩸 Gore</button>
+    <button class="chip" onclick="filterChip('mahou',this)">🧙‍♀️ Mahou</button>
+    <button class="chip" onclick="filterChip('dark',this)">🌑 Dark</button>
+    <button class="chip" onclick="filterChip('musical',this)">🎸 Musical</button>
+    <button class="chip" onclick="filterChip('survival',this)">☠️ Survival</button>
+  </div>
+
+  <div id="no-res" class="no-results">Nenhum anime encontrado 🔍</div>
+  <div id="gbox">
+
+  <div class="gblock" data-g="drama romance">
+    <div class="gblock-title">🎭 Drama</div>
+    <div class="ag">
+      <div class="ac" data-name="your lie in april shigatsu" data-tags="drama romance musical"><img src="https://media.fstatic.com/Mw25F8CpC59SFxaNANhW3zzCHDw=/350x525/smart/filters:format(webp)/media/movies/covers/2014/11/shigatsu-wa-kimi-no-uso_t106389.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Your Lie in April</p></div></div>
+      <div class="ac" data-name="clannad after story" data-tags="drama romance"><img src="https://m.media-amazon.com/images/I/81R8HeREVwL._AC_UF894,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Clannad: After Story</p></div></div>
+      <div class="ac" data-name="angel beats" data-tags="drama sobrenatural"><img src="https://m.media-amazon.com/images/M/MV5BN2NlOWI5OTMtODRhZi00NjY3LTljZTUtYTQwZTMxOTBjNzE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Angel Beats!</p></div></div>
+      <div class="ac" data-name="Plastic Memories"><img src="https://m.media-amazon.com/images/M/MV5BZmM1Yjc3MjItMjk4NC00NmEwLWIyOWYtMmM4ODU5NDM0MDZmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Plastic Memories</p></div></div>
+      <div class="ac" data-name="Hotaru no Haka"><img src="https://myanimelist.net/images/anime/1485/141208.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Hotaru no Haka</p></div></div>
+      <div class="ac" data-name="somali to mori no kamisama" data-tags="drama aventura fantasia"><img src="https://m.media-amazon.com/images/M/MV5BMGI5NzcyYmItNjI1ZS00YWU4LWE1ODYtYmZhN2E1YmU1MTk4XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Somali to Mori</p></div></div>
+      <div class="ac" data-name="Koe no Katachi"><img src="https://myanimelist.net/images/anime/1122/96435.webp" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Koe no Katachi</p></div></div>
+      <div class="ac" data-name="Violet Evergarden"><img src="https://myanimelist.net/images/anime/1795/95088.webp" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Violet Evergarden</p></div></div>
+      <div class="ac" data-name="Violet Evergarden"><img src="https://myanimelist.net/images/anime/11/89556.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Sayonara no Asa ni Yakusoku no Hana wo Kazarou</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="romance">
+    <div class="gblock-title">💖 Romance</div>
+    <div class="ag">
+      <div class="ac" data-name="clannad after story romance" data-tags="romance drama"><img src="https://m.media-amazon.com/images/I/81R8HeREVwL._AC_UF894,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Clannad: After Story</p></div></div>
+      <div class="ac" data-name="Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen" data-tags="romance comedia"><img src="https://myanimelist.net/images/anime/1295/106551.webp" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Kaguya-sama</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="acao">
+    <div class="gblock-title">🔥 Ação</div>
+    <div class="ag">
+      <div class="ac" data-name="fate stay night heavens feel" data-tags="acao fantasia sobrenatural"><img src="https://upload.wikimedia.org/wikipedia/en/7/7c/Fate-stay_night_Heaven%27s_Feel_Trilogy_Poster.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Fate/HF</p></div></div>
+      <div class="ac" data-name="vinland saga acao" data-tags="acao drama historico"><img src="https://m.media-amazon.com/images/M/MV5BNDA3MGNmZTEtMzFiMy00ZmViLThhNmQtMjQ4ZDc5MDEyN2U1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Vinland Saga</p></div></div>
+      <div class="ac" data-name="hunter x hunter hxh" data-tags="acao aventura fantasia"><img src="https://m.media-amazon.com/images/M/MV5BYzYxOTlkYzctNGY2MC00MjNjLWIxOWMtY2QwYjcxZWIwMmEwXkEyXkFqcGc@._V1_QL75_UY281_CR4,0,190,281_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Hunter x Hunter</p></div></div>
+      <div class="ac" data-name="fullmetal alchemist brotherhood fma" data-tags="acao fantasia aventura"><img src="https://cdn.myanimelist.net/images/anime/1223/96541.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">FMA: Brotherhood</p></div></div>
+      <div class="ac" data-name="86 eighty six" data-tags="acao scifi militar drama"><img src="https://m.media-amazon.com/images/M/MV5BOWNmY2IzOGItMmQyNy00ZTM0LThiNjItODM3YzdkYjRlNWU1XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">86 -Eighty Six-</p></div></div>
+      <div class="ac" data-name="dororo samurai" data-tags="acao historico dark"><img src="https://m.media-amazon.com/images/M/MV5BYzk2ODAyZjctNjExNS00ZDk0LWE1ZDMtZmIyNzI2NjNjNjllXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Dororo</p></div></div>
+      <div class="ac" data-name="arknights perish in frost" data-tags="acao dark fantasia"><img src="https://cdn.myanimelist.net/images/anime/6/86733.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Arknights: PiF</p></div></div>
+      <div class="ac" data-name="bna brand new animal" data-tags="acao sobrenatural fantasia"><img src="https://m.media-amazon.com/images/M/MV5BMzUxMzAxYTMtMmYzOS00YzYyLWE2ZDUtYmQxZDhiNWIxNDNiXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">BNA</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="comedia">
+    <div class="gblock-title">😂 Comédia</div>
+    <div class="ag">
+      <div class="ac" data-name="seto no hanayome mermaid comedy" data-tags="comedia romance harem"><img src="https://m.media-amazon.com/images/M/MV5BY2NmYjk1Y2EtMjNhZi00ZDVjLTg4YzAtZDA5MGY1NGYxMDIxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Seto no Hanayome</p></div></div>
+      <div class="ac" data-name="bocchi the rock" data-tags="comedia musical slice"><img src="https://m.media-amazon.com/images/I/81ScRXWN6DL._AC_UF1000,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Bocchi the Rock!</p></div></div>
+      <div class="ac" data-name="maoujou de oyasumi sleepy princess" data-tags="comedia fantasia slice"><img src="https://static.wikia.nocookie.net/sleepy-princess/images/3/3b/Anime_Key_Visual.png/revision/latest/smart/width/250/height/250?cb=20200903041445" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Maoujou de Oyasumi</p></div></div>
+      <div class="ac" data-name="akiba meido sensou maid war" data-tags="comedia acao"><img src="https://m.media-amazon.com/images/M/MV5BYzA5YmZlNzMtYjdlZC00ZDg0LTgyMjEtNTZhYTFmYzJkNTg1XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Akiba Meido Sensou</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="fantasia">
+    <div class="gblock-title">🪄 Fantasia</div>
+    <div class="ag">
+      <div class="ac" data-name="fullmetal alchemist brotherhood" data-tags="fantasia acao aventura"><img src="https://cdn.myanimelist.net/images/anime/1223/96541.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">FMA: Brotherhood</p></div></div>
+      <div class="ac" data-name="frieren beyond journey end" data-tags="fantasia drama slice"><img src="https://myanimelist.net/images/anime/1015/138006.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Frieren</p></div></div>
+      <div class="ac" data-name="re zero" data-tags="fantasia isekai drama"><img src="https://cdn.myanimelist.net/images/anime/11/79410.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Re:Zero</p></div></div>
+      <div class="ac" data-name="made in abyss" data-tags="fantasia aventura dark drama"><img src="https://m.media-amazon.com/images/S/pv-target-images/acf77e7193251c237654b4ab7a3f83720d8703a416927e8d38a5c55ca0883898._SX1080_FMjpg_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Made in Abyss</p></div></div>
+      <div class="ac" data-name="tengen toppa gurren lagann" data-tags="fantasia mecha acao"><img src="https://m.media-amazon.com/images/M/MV5BMGJlODA2ZmItOTRiZS00NWM5LWJlNTQtYzI5MTNiZjA2MGFjXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Gurren Lagann</p></div></div>
+      <div class="ac" data-name="grimgar of fantasy ash" data-tags="fantasia isekai drama acao"><img src="https://m.media-amazon.com/images/M/MV5BMmUyNzNmMDEtNjYzYi00ZDcwLTg4NTQtZTUzYzBiZTYwNzYyXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Grimgar</p></div></div>
+      <div class="ac" data-name="majo no tabitabi elaina witch" data-tags="fantasia aventura isekai"><img src="https://myanimelist.net/images/anime/1802/108501.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Majo no Tabitabi</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="scifi">
+    <div class="gblock-title">🚀 Sci-Fi</div>
+    <div class="ag">
+      <div class="ac" data-name="steins gate time travel" data-tags="scifi thriller drama"><img src="https://m.media-amazon.com/images/M/MV5BZjI1YjZiMDUtZTI3MC00YTA5LWIzMmMtZmQ0NTZiYWM4NTYwXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Steins;Gate</p></div></div>
+      <div class="ac" data-name="vivy fluorite eye song" data-tags="scifi musical drama"><img src="https://m.media-amazon.com/images/M/MV5BNjA1MzlhOWEtYmQ1OC00MTUwLTliZDQtNGRlYmE4ZTVmMWQxXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Vivy</p></div></div>
+      <div class="ac" data-name="86 eighty six scifi" data-tags="scifi militar drama acao"><img src="https://m.media-amazon.com/images/M/MV5BOWNmY2IzOGItMmQyNy00ZTM0LThiNjItODM3YzdkYjRlNWU1XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">86 -Eighty Six-</p></div></div>
+      <div class="ac" data-name="cyberpunk edgerunners" data-tags="scifi cyberpunk acao drama"><img src="https://upload.wikimedia.org/wikipedia/pt/thumb/6/68/Cyberpunk_mercenarios.jpg/250px-Cyberpunk_mercenarios.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Cyberpunk: Edgerunners</p></div></div>
+      <div class="ac" data-name="serial experiments lain" data-tags="scifi psicologico terror cyberpunk"><img src="https://m.media-amazon.com/images/M/MV5BZGJiMmEyMDMtMTJlZi00YTgwLWI1ODgtZDA1YjEyM2Q5MjI3XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Serial Experiments Lain</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="terror">
+    <div class="gblock-title">👁️ Terror / Horror</div>
+    <div class="ag">
+      <div class="ac" data-name="higurashi no naku koro ni when they cry" data-tags="terror psicologico gore"><img src="https://cdn.myanimelist.net/images/anime/12/19634.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Higurashi</p></div></div>
+      <div class="ac" data-name="serial experiments lain horror" data-tags="terror psicologico scifi"><img src="https://m.media-amazon.com/images/M/MV5BZGJiMmEyMDMtMTJlZi00YTgwLWI1ODgtZDA1YjEyM2Q5MjI3XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Serial Experiments Lain</p></div></div>
+      <div class="ac" data-name="corpse party horror" data-tags="terror gore"><img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/8bf177dc47226ba416fc7b963dde40f4.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Corpse Party</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="psicologico">
+    <div class="gblock-title">🧠 Psicológico</div>
+    <div class="ag">
+      <div class="ac" data-name="serial experiments lain psych" data-tags="psicologico terror scifi"><img src="https://m.media-amazon.com/images/M/MV5BZGJiMmEyMDMtMTJlZi00YTgwLWI1ODgtZDA1YjEyM2Q5MjI3XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Serial Experiments Lain</p></div></div>
+      <div class="ac" data-name="higurashi psicologico" data-tags="psicologico terror gore"><img src="https://cdn.myanimelist.net/images/anime/12/19634.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Higurashi</p></div></div>
+      <div class="ac" data-name="classroom of the elite youkoso" data-tags="psicologico escolar drama"><img src="https://m.media-amazon.com/images/M/MV5BMDg3MGVhNWUtYTQ2NS00ZDdiLTg5MTMtZmM5MjUzN2IxN2I4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Classroom of the Elite</p></div></div>
+      <div class="ac" data-name="steins gate psicologico" data-tags="psicologico scifi thriller"><img src="https://m.media-amazon.com/images/M/MV5BZjI1YjZiMDUtZTI3MC00YTA5LWIzMmMtZmQ0NTZiYWM4NTYwXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Steins;Gate</p></div></div>
+      <div class="ac" data-name=""><img src="https://myanimelist.net/images/anime/5/71553.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Death Parade</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="isekai">
+    <div class="gblock-title">🌀 Isekai</div>
+    <div class="ag">
+      <div class="ac" data-name="re zero isekai" data-tags="isekai drama fantasia"><img src="https://cdn.myanimelist.net/images/anime/11/79410.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Re:Zero</p></div></div>
+      <div class="ac" data-name="grimgar fantasy ash isekai" data-tags="isekai drama fantasia acao"><img src="https://m.media-amazon.com/images/M/MV5BMmUyNzNmMDEtNjYzYi00ZDcwLTg4NTQtZTUzYzBiZTYwNzYyXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Grimgar</p></div></div>
+      <div class="ac" data-name="no game no life isekai" data-tags="isekai jogo comedia fantasia"><img src="https://cdn.myanimelist.net/images/anime/1074/111944.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">No Game No Life</p></div></div>
+      <div class="ac" data-name="Youjo Senki" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/5/82890.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Youjo Senki</p></div></div>
+      <div class="ac" data-name="" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/1091/128729.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Kage no Jitsuryokusha ni Naritakute!</p></div></div>
+      <div class="ac" data-name="" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/1638/119321.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Kono Subarashi</p></div></div>
+      <div class="ac" data-name="" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/1743/125204.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Isekai Ojisan</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="gore">
+    <div class="gblock-title">🩸 Gore</div>
+    <div class="ag">
+      <div class="ac" data-name="elfen lied gore" data-tags="gore drama terror psicologico"><img src="https://myanimelist.net/images/anime/1780/121555.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Elfen Lied</p></div></div>
+      <div class="ac" data-name="higurashi gore" data-tags="gore terror psicologico"><img src="https://cdn.myanimelist.net/images/anime/12/19634.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Higurashi</p></div></div>
+      <div class="ac" data-name="corpse party gore terror" data-tags="gore terror"><img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/8bf177dc47226ba416fc7b963dde40f4.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Corpse Party</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="mahou">
+    <div class="gblock-title">🧙‍♀️ Mahou Shoujo</div>
+    <div class="ag">
+      <div class="ac" data-name="puella magi madoka magica mahou" data-tags="mahou dark drama psicologico"><img src="https://myanimelist.net/images/anime/11/55225.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Madoka Magica</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="dark">
+    <div class="gblock-title">🌑 Dark Fantasy</div>
+    <div class="ag">
+      <div class="ac" data-name="made in abyss dark" data-tags="dark fantasia aventura drama"><img src="https://m.media-amazon.com/images/S/pv-target-images/acf77e7193251c237654b4ab7a3f83720d8703a416927e8d38a5c55ca0883898._SX1080_FMjpg_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Made in Abyss</p></div></div>
+      <div class="ac" data-name="arknights perish frost dark" data-tags="dark acao fantasia"><img src="https://cdn.myanimelist.net/images/anime/6/86733.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Arknights: PiF</p></div></div>
+      <div class="ac" data-name="dororo dark samurai" data-tags="dark acao historico"><img src="https://m.media-amazon.com/images/M/MV5BYzk2ODAyZjctNjExNS00ZDk0LWE1ZDMtZmIyNzI2NjNjNjllXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Dororo</p></div></div>
+      <div class="ac" data-name="arknights" data-tags="dark mahou psicologico drama"><img src="https://m.media-amazon.com/images/M/MV5BNTRkZDIyMjktZjc0Ni00Y2FjLTkyNTgtZWFhOWExNTgzYmUzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">arknights</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="survival">
+    <div class="gblock-title">☠️ Survival</div>
+    <div class="ag">
+      <div class="ac" data-name="attack on titan shingeki survival" data-tags="survival acao dark drama"><img src="https://cdn.myanimelist.net/images/anime/10/47347.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Melhor</p><p class="ac-name">Attack on Titan</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="musical">
+    <div class="gblock-title">🎸 Musical</div>
+    <div class="ag">
+      <div class="ac" data-name="bocchi the rock musical" data-tags="musical comedia slice"><img src="https://m.media-amazon.com/images/I/81ScRXWN6DL._AC_UF1000,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Bocchi the Rock!</p></div></div>
+      <div class="ac" data-name="vivy fluorite eye song musical" data-tags="musical scifi drama"><img src="https://m.media-amazon.com/images/M/MV5BNjA1MzlhOWEtYmQ1OC00MTUwLTliZDQtNGRlYmE4ZTVmMWQxXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Vivy</p></div></div>
+      <div class="ac" data-name="your lie in april musical" data-tags="musical drama romance"><img src="https://media.fstatic.com/Mw25F8CpC59SFxaNANhW3zzCHDw=/350x525/smart/filters:format(webp)/media/movies/covers/2014/11/shigatsu-wa-kimi-no-uso_t106389.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Your Lie in April</p></div></div>
+      <div class="ac" data-name="angel beats musical" data-tags="musical drama sobrenatural"><img src="https://m.media-amazon.com/images/M/MV5BN2NlOWI5OTMtODRhZi00NjY3LTljZTUtYTQwZTMxOTBjNzE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Angel Beats!</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="ecchi">
+    <div class="gblock-title">🔞 Ecchi</div>
+    <div class="ag">
+      <div class="ac" data-name="kill la kill ecchi" data-tags="ecchi acao"><img src="https://myanimelist.net/images/anime/1464/111943.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Kill la Kill</p></div></div>
+      <div class="ac" data-name="to love ru ecchi" data-tags="ecchi harem comedia"><img src="https://myanimelist.net/images/anime/1292/147431.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">To LOVE-Ru</p></div></div>
+      <div class="ac" data-name="peter grill philosopher time ecchi" data-tags="ecchi comedia harem"><img src="https://m.media-amazon.com/images/M/MV5BNzNmMjA5YjctZDRmZi00ZTNiLTlhOTUtMzE2ZjdmNTU3OTI2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Peter Grill</p></div></div>
+    </div>
+  </div>
+
+  <div class="gblock" data-g="misterio aventura escolar militar historico mecha sobrenatural esporte harem slice">
+    <div class="gblock-title">🔍 Outros Gêneros</div>
+    <div class="ag">
+      <div class="ac" data-name="summertime rendering misterio" data-tags="misterio thriller"><img src="https://m.media-amazon.com/images/M/MV5BNjhmN2RmYjgtN2ZlNC00YTdkLWFlMTYtMTdkNzkxMDA0ZjJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Mistério</p><p class="ac-name">Summertime Rendering</p></div></div>
+      <div class="ac" data-name="haikyuu esporte vôlei" data-tags="esporte drama"><img src="https://cdn.myanimelist.net/images/anime/7/76014.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Esporte</p><p class="ac-name">Haikyuu!!</p></div></div>
+      <div class="ac" data-name="mob psycho 100 sobrenatural" data-tags="sobrenatural acao comedia"><img src="https://m.media-amazon.com/images/M/MV5BYzU3NDM4ZjgtY2UyMi00YTczLTgyNDEtMjBiMDJlOGUxNjcxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Sobrenaturall</p><p class="ac-name">Mob Psycho 100</p></div></div>
+      <div class="ac" data-name="date a live harem" data-tags="harem acao romance"><img src="https://m.media-amazon.com/images/M/MV5BM2I5OGRiZWMtYjk1NS00ZGZiLWJiYTktMGJjMGRiNDhlNzI3XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Harem</p><p class="ac-name">Date A Live</p></div></div>
+      <div class="ac" data-name="gurren lagann mecha" data-tags="mecha acao fantasia"><img src="https://m.media-amazon.com/images/M/MV5BMGJlODA2ZmItOTRiZS00NWM5LWJlNTQtYzI5MTNiZjA2MGFjXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Mecha</p><p class="ac-name">Gurren Lagann</p></div></div>
+      <div class="ac" data-name="assassination classroom escolar" data-tags="escolar acao comedia"><img src="https://static.wikia.nocookie.net/dublagem/images/9/90/Assassination_Classroom.jpg/revision/latest/scale-to-width-down/1200?cb=20201224044556&path-prefix=pt-br" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Escolar</p><p class="ac-name">Assassination Classroom</p></div></div>
+      <div class="ac" data-name="wolf children slice of life" data-tags="slice drama fantasia"><img src="https://m.media-amazon.com/images/I/91zAQQYsRGL._AC_UF894,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Slice of Life</p><p class="ac-name">Wolf Children</p></div></div>
+    </div>
+  </div>
+
+  </div><!-- end gbox -->
+</div>
+</div>
+
+<!-- ══ TOP 30 ══ -->
+<div class="tab" id="tab-top">
+<div class="sec">
+  <div class="sec-hd"><div class="sec-n">03</div><div><div class="sec-eye">Escolha pessoal</div><h2 class="sec-ttl">Meu Top 30</h2></div><div class="sec-line"></div></div>
+  <div class="top-list" id="tlist"></div>
+</div>
+</div>
+
+<!-- ══ PERSONAGENS ══ -->
+<div class="tab" id="tab-favchars">
+<div class="sec">
+  <div class="sec-hd"><div class="sec-n">04</div><div><div class="sec-eye">Favoritos</div><h2 class="sec-ttl">Personagens</h2></div><div class="sec-line"></div></div>
+  <div class="gblock-title" style="margin-bottom:14px">♂ Masculinos</div>
+  <div class="fav-row">
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://i.pinimg.com/474x/80/d7/58/80d7586c842b53f343f00991178110a7.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Thorfinn</p><p class="fc-from">Vinland Saga</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://i.redd.it/zbxwqtes5z911.png" loading="lazy"><div class="fc-info"><p class="fc-name">Okabe Rintarou</p><p class="fc-from">Steins;Gate</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://preview.redd.it/tomoya-is-real-v0-y992gciceabe1.jpeg?auto=webp&s=7aa16df88b4d8674c77eaf98d5dde991780d8729" loading="lazy"><div class="fc-info"><p class="fc-name">Tomoya Okazaki</p><p class="fc-from">Clannad</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://static.wikia.nocookie.net/gurennlagann/images/5/56/Simon_stepping_out_og_Gurren_Lagann.jpg/revision/latest/scale-to-width-down/985?cb=20180302005345" loading="lazy"><div class="fc-info"><p class="fc-name">Simon</p><p class="fc-from">Gurren Lagann</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://static.wikitide.net/deathbattlewiki/1/1f/Portrait.edwardelric.png" loading="lazy"><div class="fc-info"><p class="fc-name">Edward Elric</p><p class="fc-from">FMA: Brotherhood</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkdU2AVfjALZmkr4BFVjSdec5YUBZHJZuhFA&s" loading="lazy"><div class="fc-info"><p class="fc-name">Emiya Shirou</p><p class="fc-from">Fate/Stay Night</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://preview.redd.it/hyakkimaru-dororo-episode-4-v0-rmgm0bfj2uz21.jpg?width=640&crop=smart&auto=webp&s=c6ddad98631b28f6fdfe963d0927c030c1395283" loading="lazy"><div class="fc-info"><p class="fc-name">Hyakkimaru</p><p class="fc-from">Dororo</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://static.wikia.nocookie.net/madeinabyss/images/e/ea/Bondrewd_Manga_Square.jpg/revision/latest/scale-to-width/360?cb=20250605234245" loading="lazy"><div class="fc-info"><p class="fc-name">Bondrewd</p><p class="fc-from">Made in Abyss</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://preview.redd.it/question-about-gluttony-if-route-v0-45pp0xjaakmf1.jpeg?width=640&crop=smart&auto=webp&s=cbbfe5a9e4e7961700b04ce2076d90002c9b5dc0" loading="lazy"><div class="fc-info"><p class="fc-name">Subaru gula</p><p class="fc-from">Re:Zero</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://myanimelist.net/images/characters/15/72546.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Goku</p><p class="fc-from">Dragon Ball</p></div></div>
+  </div>
+
+  <div class="gblock-title" style="margin:40px 0 14px">♀ Femininas</div>
+  <div class="fav-row">
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://www.animeunited.com.br/oomtumtu/2017/12/rem-re-zero.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Rem</p><p class="fc-from">Re:Zero</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://i.ytimg.com/vi/KpBYd26Cgl0/hq720.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Oguri Cap</p><p class="fc-from">Cinderella Gray</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://i0.wp.com/geekpopnews.com.br/wp-content/uploads/2023/07/Bocchi-the-rock-4.jpg?resize=800%2C600&ssl=1" loading="lazy"><div class="fc-info"><p class="fc-name">Bocchi</p><p class="fc-from">Bocchi the Rock!</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://i.pinimg.com/736x/b7/f6/50/b7f650013f1681692374f028c3464157.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Tomoyo Sakagami</p><p class="fc-from">Clannad</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://a.storyblok.com/f/178900/1000x563/ed655ce2fb/spice-and-wolf-2024-screen1.jpg/m/filters:quality(95)format(webp)" loading="lazy"><div class="fc-info"><p class="fc-name">Holo</p><p class="fc-from">Ookami to Koushinryou</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://i.pinimg.com/736x/b5/76/12/b576129e7f27a56f33878b544c1a20a7.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">arcueid</p><p class="fc-from">tsukihime </p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://myanimelist.net/images/characters/12/172239.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Inaba, Himeko</p><p class="fc-from">Kokoro Connect</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://myanimelist.net/images/characters/14/294277.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Matou, Sakura</p><p class="fc-from">tsukihime </p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://myanimelist.net/images/characters/13/325018.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Yona</p><p class="fc-from">Akatsuki no Yona</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://myanimelist.net/images/characters/12/248121.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Jibril </p><p class="fc-from">No Game No Life</p></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ MÚSICAS ══ -->
+<div class="tab" id="tab-musicas">
+<div class="sec">
+  <div class="sec-hd"><div class="sec-n">05</div><div><div class="sec-eye">OPs · EDs · OSTs</div><h2 class="sec-ttl">Músicas Favoritas</h2></div><div class="sec-line"></div></div>
+  <div class="msep">Openings</div>
+  <a href="https://youtu.be/MM8RufZr5lw" target="_blank" class="mc op"><img src="https://preview.redd.it/o-que-voc%C3%AAs-acham-de-serial-experiments-lain-eu-descobri-v0-8ve0j2p2q0rb1.jpg?auto=webp&s=d521561db248665ce10bf8ea64e7992431e0d70a"><div><span class="mc-type">OP 1</span><div class="mc-title">Duvet</div><span class="mc-anime">Serial Experiments Lain</span><span class="mc-artist">Jasmine Rodgers</span></div></a>
+  <a href="https://youtu.be/nU21rCWkuJw" target="_blank" class="mc op"><img src="https://img.odcdn.com.br/wp-content/uploads/2023/06/Neon-Genesis-Evangelion-Wall.jpg"><div><span class="mc-type">OP 1</span><div class="mc-title">Cruel Angels' Thesis</div><span class="mc-anime">Neon Genesis Evangelion</span><span class="mc-artist">Yoko Takahashi</span></div></a>
+  <a href="https://youtu.be/wMybECC5j30" target="_blank" class="mc op"><img src="https://i1.sndcdn.com/artworks-000162237820-or18pk-t500x500.jpg"><div><span class="mc-type">OP 2</span><div class="mc-title">Brave Shine</div><span class="mc-anime">Fate/Stay Night: UBW</span><span class="mc-artist">Aimer</span></div></a>
+  <a href="https://youtu.be/0Vwwr3VGsYg" target="_blank" class="mc op"><img src="https://cdn.myanimelist.net/images/anime/11/79410.jpg"><div><span class="mc-type">OP 1</span><div class="mc-title">Redo</div><span class="mc-anime">Re:Zero</span><span class="mc-artist">Konomi Suzuki</span></div></a>
+  <a href="https://youtu.be/yHm1MZUAqJY?t=21" target="_blank" class="mc op"><img src="https://m.media-amazon.com/images/M/MV5BZTA4MDZlOTEtYWY2Zi00YjczLTg5NzEtNzYxYzdjM2FiZTY5XkEyXkFqcGc@._V1_QL75_UY281_CR4,0,190,281_.jpg"><div><span class="mc-type">OP 1</span><div class="mc-title">PERISH IN FROST</div><span class="mc-anime">Arknights</span><span class="mc-artist">ReoNa</span></div></a>
+  <div class="msep">Endings</div>
+  <a href="https://youtu.be/u0CqY27IFyo" target="_blank" class="mc ed"><img src="https://i.ytimg.com/vi/u0CqY27IFyo/maxresdefault.jpg"><div><span class="mc-type">ED 1</span><div class="mc-title">Avid</div><span class="mc-anime">86 -Eighty Six-</span><span class="mc-artist">mizuki</span></div></a>
+  <a href="https://youtu.be/uNi2ceeUuRM?t=4" target="_blank" class="mc ed"><img src="https://i.ytimg.com/vi/uNi2ceeUuRM/hq720.jpg"><div><span class="mc-type">ED 3</span><div class="mc-title">Memento</div><span class="mc-anime">Re:Zero</span><span class="mc-artist">nonoc</span></div></a>
+  <a href="https://youtu.be/zUw9sRvIP8Q?list=RDzUw9sRvIP8Q&t=45" target="_blank" class="mc ed"><img src="https://static.wikia.nocookie.net/steins-gate/images/0/0d/Radiocd.jpg/revision/latest?cb=20130509222525"><div><span class="mc-type">ED 1</span><div class="mc-title">GATE OF STEINER</div><span class="mc-anime">Steins;Gate 0</span><span class="mc-artist">Eri Sasaki</span></div></a>
+  <div class="msep">OSTs</div>
+  <a href="https://youtu.be/JfRo9G4rPHA?t=2" target="_blank" class="mc ost"><img src="https://m.media-amazon.com/images/I/51CsgeImhrL._UF1000,1000_QL80_.jpg"><div><span class="mc-type">OST</span><div class="mc-title">in the garden of sinners</div><span class="mc-anime">Kara no Kyoukai</span><span class="mc-artist">Kalafina</span></div></a>
+  <a href="https://youtu.be/sFzDQ2OjFko?list=RDsFzDQ2OjFko&t=41" target="_blank" class="mc ost"><img src="https://i.ytimg.com/vi/sFzDQ2OjFko/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGHIgTSg5MA8=&rs=AOn4CLDQPE-mcjaaQGkVkMebklzLiPvR0w"><div><span class="mc-type">OST</span><div class="mc-title">Hanezeve Caradhina</div><span class="mc-anime">Made in Abyss</span><span class="mc-artist">Takeshi Saito</span></div></a>
+  <a href="https://youtu.be/hBkh7DRNqw8?list=RDhBkh7DRNqw8&t=3" target="_blank" class="mc ost"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8olpSjjRYzSfYyp2hDEJjrVrfzKrdhCiKjQ&s"><div><span class="mc-type">OST</span><div class="mc-title">Trisha's Lullaby</div><span class="mc-anime">FMA: Brotherhood</span><span class="mc-artist">Sven Blix</span></div></a>
+</div>
+</div>
+
+<!-- ══ MARCOS ══ -->
+<div class="tab" id="tab-marcos">
+<div class="sec">
+  <div class="sec-hd"><div class="sec-n">06</div><div><div class="sec-eye">Jornada</div><h2 class="sec-ttl">Marcos</h2></div><div class="sec-line"></div></div>
+  <div class="marco-grid">
+    <div class="mrc"><img src="https://upload.wikimedia.org/wikipedia/pt/e/e2/Ponyo_p%C3%B4ster.png" loading="lazy"><div class="mrc-badge">#1</div><div class="mrc-info"><p class="mrc-name">Ponyo</p><p class="mrc-desc">O começo de tudo</p></div></div>
+    <div class="mrc"><img src="https://m.media-amazon.com/images/M/MV5BMzcxMjBiNWMtNDBmYi00NmFlLWFlOTctZjlkMzExMWU0YTI5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="mrc-badge">#100</div><div class="mrc-info"><p class="mrc-name">Nisekoi</p><p class="mrc-desc">Data: xx/xx/2020</p></div></div>
+    <div class="mrc"><img src="https://m.media-amazon.com/images/I/91XjS5O83yL._AC_UF894,1000_QL80_.jpg" loading="lazy"><div class="mrc-badge">#200</div><div class="mrc-info"><p class="mrc-name">Shuffle!</p><p class="mrc-desc">Data: 10/xx/2022</p></div></div>
+    <div class="mrc"><img src="https://cdn.myanimelist.net/images/anime/1223/96541.jpg" loading="lazy"><div class="mrc-badge">#300</div><div class="mrc-info"><p class="mrc-name">Fullmetal Alchemist</p><p class="mrc-desc">Data: 08/06/2024</p></div></div>
+    <div class="mrc"><img src="https://myanimelist.net/images/anime/13/77662.jpg" loading="lazy"><div class="mrc-badge">#400</div><div class="mrc-info"><p class="mrc-name">Chika Gentou Gekiga: Shoujo Tsubaki</p><p class="mrc-desc">Data: 08/12/2025</p></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ GACHA ══ -->
+<div class="tab" id="tab-gacha">
+<div class="sec">
+  <div class="sec-hd"><div class="sec-n">07</div><div><div class="sec-eye">Mobile Games</div><h2 class="sec-ttl">Gacha Favoritos</h2></div><div class="sec-line"></div></div>
+  <div class="gacha-grid">
+    <div class="gc"><div class="gc-banner"><img src="https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000041655/2c8e04df5b0a67cadda0b78f4848ee28d901ee581028bcaea5c2adf861b7b145" loading="lazy"><div class="gc-overlay"><div class="gc-icon">🛡️</div><h3>GUARDIAN TALES</h3><div class="gc-genre">Action RPG · Adventure</div></div></div><div class="gc-body"><p>Aventura nostálgica em pixel art com humor e referências à cultura pop.</p><div class="gc-tags"><span class="gt">Pixel Art</span><span class="gt">Adventure</span><span class="gt">Retro</span></div></div></div>
+    <div class="gc"><div class="gc-banner"><img src="https://m.media-amazon.com/images/M/MV5BN2U3MWIzYTEtMGY0Yi00ZGE1LTk0ZWEtYTJlMzNkZTY1YWYyXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="gc-overlay"><div class="gc-icon">🏹</div><h3>ARKNIGHTS</h3><div class="gc-genre">Tower Defense · Strategy</div></div></div><div class="gc-body"><p>Lore profundo. Perish in Frost é a melhor história já contada em gacha.</p><div class="gc-tags"><span class="gt">Strategy</span><span class="gt">Dark Lore</span><span class="gt">Hypergryph</span></div></div></div>
+    <div class="gc"><div class="gc-banner"><img src="https://webstatic.hoyoverse.com/upload/op-public/2023/09/14/3c862d085db721a5625b6e12649399bc_8067514115196038699.png" loading="lazy"><div class="gc-overlay"><div class="gc-icon">🚂</div><h3>HONKAI: STAR RAIL</h3><div class="gc-genre">Turn-based RPG</div></div></div><div class="gc-body"><p>Narrativa rica com personagens inesquecíveis. Sistema de batalha viciante.</p><div class="gc-tags"><span class="gt">Turn-based</span><span class="gt">miHoYo</span><span class="gt">Story</span></div></div></div>
+    <div class="gc"><div class="gc-banner"><img src="https://fastcdn.hoyoverse.com/content-v2/plat/124392/3ba9a74bbed3272ff0a14e861e1e8418_8953409163702722405.png" loading="lazy"><div class="gc-overlay"><div class="gc-icon">⚔️</div><h3>Zenless Zone Zero</h3><div class="gc-genre">Action RPG · Open World</div></div></div><div class="gc-body"><p>Mundo open world imenso com personagens únicos e trilha sonora excepcional.</p><div class="gc-tags"><span class="gt">Open World</span><span class="gt">miHoYo</span><span class="gt">Co-op</span></div></div></div>
+  </div>
+
+  <!-- ══ PERSONAGENS DE GACHA ══ -->
+  <div class="sec-hd" style="margin-top:48px"><div class="sec-n">✦</div><div><div class="sec-eye">Favoritos</div><h2 class="sec-ttl">Personagens de Gacha</h2></div><div class="sec-line"></div></div>
+
+  <div class="gblock-title" style="margin-bottom:14px">🛡️ Guardian Tales</div>
+  <div class="fav-row">
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSd-e8wVp5arI1bPEphwaJ030BeGHNMYWxzw&s" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/2e/2e/2e/2e2e2ea5b3c3b3c3b3c3b3c3b3c3b3c3.jpg'"><div class="fc-info"><p class="fc-name">Futura Princesa</p><p class="fc-from">Guardian Tales</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://images.steamusercontent.com/ugc/2450593103681914012/DC1BC895CB6E3BB5AB61F571EA72E60C12FF7A64/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/aa/bb/cc/aabbcc112233445566778899aabbcc11.jpg'"><div class="fc-info"><p class="fc-name">Beth</p><p class="fc-from">Guardian Tales</p></div></div>
+    <div class="fc m"><div class="fc-badge">♂</div><img src="https://static.wikia.nocookie.net/guardian-tales/images/1/1b/Illustration_The_Knight.jpg/revision/latest?cb=20250607180302" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/kn/ig/ht/knight_gt_placeholder.jpg'"><div class="fc-info"><p class="fc-name">Knight</p><p class="fc-from">Guardian Tales</p></div></div>
+  </div>
+
+  <div class="gblock-title" style="margin:36px 0 14px">🏹 Arknights</div>
+  <div class="fav-row">
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://static.wikia.nocookie.net/mrfz/images/4/4b/Talulah_Attacks.png/revision/latest?cb=20210221123837" loading="lazy"><div class="fc-info"><p class="fc-name">Talulah</p><p class="fc-from">Arknights</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://cdnb.artstation.com/p/assets/images/images/027/877/765/large/yan-ling-chen-.jpg?1592837088" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/3e/4f/5a/3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b.jpg'"><div class="fc-info"><p class="fc-name">Amiya</p><p class="fc-from">Arknights</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://i.pinimg.com/474x/b9/2a/55/b92a55f00052e59420c1b67530c1499c.jpg" loading="lazy" onerror="this.src='https://static.wikia.nocookie.net/mrfz/images/6/6e/W.png/revision/latest?cb=20200101000000'"><div class="fc-info"><p class="fc-name">W</p><p class="fc-from">Arknights</p></div></div>
+  </div>
+
+
+
+  <div class="gblock-title" style="margin:36px 0 14px">🚂 Honkai: Star Rail</div>
+  <div class="fav-row">
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://cdn.topuplive.com/cdn-cgi/image/quality=low,format=webp/uploads/images/goods/20250408/1744080876_83lMvn8Vvj.png" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/ca/st/or/castorice_hsr_placeholder.jpg'"><div class="fc-info"><p class="fc-name">Castorice</p><p class="fc-from">Honkai: Star Rail</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://upload-os-bbs.hoyolab.com/upload/2024/04/07/326611529/bdbf117ecc69d9fea7d3d700ce9b1242_4910617699983207819.jpg" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/c1/a2/ra/clara_hsr_placeholder.jpg'"><div class="fc-info"><p class="fc-name">Clara</p><p class="fc-from">Honkai: Star Rail</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://preview.redd.it/official-illustration-to-commemorate-march-7th-v0-dnoaf7wu5umc1.jpeg?auto=webp&s=4f41e45196bdfcf5a4d7bde958906cae062ca9b8" loading="lazy" onerror="this.src=''"><div class="fc-info"><p class="fc-name">march 7th</p><p class="fc-from">Honkai: Star Rail</p></div></div>
+  </div>
+
+  <div class="gblock-title" style="margin:36px 0 14px">⚔️ Zenless Zone Zero</div>
+  <div class="fav-row">
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://preview.redd.it/miyabi-art-by-rizen114514-v0-todbwq5cem5e1.jpeg?auto=webp&s=14dd1dd14e7db9d87c1c6cc1d3038b5da3551409" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/mi/ya/bi/miyabi_zzz_placeholder.jpg'"><div class="fc-info"><p class="fc-name">Miyabi</p><p class="fc-from">Zenless Zone Zero</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://i.pinimg.com/736x/94/f2/86/94f28659767eb9c9cfb2d49fd28fa735.jpg" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/vi/vi/an/vivian_zzz_placeholder.jpg'"><div class="fc-info"><p class="fc-name">Vivian</p><p class="fc-from">Zenless Zone Zero</p></div></div>
+    <div class="fc f"><div class="fc-badge">♀</div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7XgsRTr1vVYGQn1Fjoxd5GqK8AxdMU_FZJg&s" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/an/by/zz/anby_zzz_placeholder.jpg'"><div class="fc-info"><p class="fc-name">Anby</p><p class="fc-from">Zenless Zone Zero</p></div></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══ ASSISTINDO ══ -->
+<div class="tab on" id="tab-assistindo" style="display:block">
+<div class="sec">
+  <div class="sec-hd"><div class="sec-n">08</div><div><div class="sec-eye">MyAnimeList · Em andamento</div><h2 class="sec-ttl">Assistindo Agora</h2></div><div class="sec-line"></div></div>
+
+  <!-- Resumo geral MAL -->
+  <div id="mal-overview" class="mal-overview" style="display:none">
+    <div class="mal-ov-header">
+      <img id="mal-avatar" src="" alt="avatar" class="mal-avatar">
+      <div>
+        <div class="mal-username">XxT0DDyxX</div>
+        <div class="mal-joined" id="mal-joined"></div>
+      </div>
+      <a href="https://myanimelist.net/profile/XxT0DDyxX" target="_blank" class="mal-link">Ver perfil ↗</a>
+    </div>
+    <div class="mal-ov-grid">
+      <div class="mal-ov-card green">
+        <span id="ov-watching">—</span>
+        <small>Assistindo</small>
+      </div>
+      <div class="mal-ov-card blue">
+        <span id="ov-completed">—</span>
+        <small>Completos</small>
+      </div>
+      <div class="mal-ov-card yellow">
+        <span id="ov-hold">—</span>
+        <small>Em espera</small>
+      </div>
+      <div class="mal-ov-card red">
+        <span id="ov-dropped">—</span>
+        <small>Dropados</small>
+      </div>
+      <div class="mal-ov-card gray">
+        <span id="ov-ptw">—</span>
+        <small>Planejo ver</small>
+      </div>
+      <div class="mal-ov-card gold">
+        <span id="ov-score">—</span>
+        <small>Score médio</small>
+      </div>
+      <div class="mal-ov-card cyan">
+        <span id="ov-eps">—</span>
+        <small>Eps totais</small>
+      </div>
+      <div class="mal-ov-card purple">
+        <span id="ov-days">—</span>
+        <small>Dias assistidos</small>
+      </div>
+    </div>
+    <div class="mal-ov-bar-wrap">
+      <div class="mal-ov-bar" id="ov-bar"></div>
+      <div class="mal-ov-bar-legend">
+        <span class="bl-dot green"></span>Assistindo
+        <span class="bl-dot blue"></span>Completo
+        <span class="bl-dot yellow"></span>Em espera
+        <span class="bl-dot red"></span>Dropado
+        <span class="bl-dot gray"></span>Planejo ver
+      </div>
+    </div>
+  </div>
+  <div id="mal-ov-loading" class="watch-loading" style="padding:32px 0">
+    <div class="wl-spinner"></div>
+    <p>Carregando perfil MAL…</p>
+  </div>
+
+  <div class="mal-section-label">▶ Em andamento agora</div>
+
+  <div class="watch-toolbar">
+    <div class="search-bar" style="flex:1;margin-bottom:0">
+      <span class="search-ico">🔍</span>
+      <input id="w-srch" type="text" placeholder="Buscar na lista..." oninput="filterWatch(this.value)">
+      <button class="search-clr" onclick="document.getElementById('w-srch').value='';filterWatch('')">✕</button>
+    </div>
+    <select id="w-sort" class="w-select" onchange="sortWatch(this.value)">
+      <option value="default">Ordem MAL</option>
+      <option value="recent">Mais Recente</option>
+      <option value="score">Maior Score</option>
+      <option value="alpha">A → Z</option>
+      <option value="ep">Mais Eps</option>
+    </select>
+    <button class="btn-cy watch-refresh" onclick="loadWatching(true)">↺ Atualizar</button>
+  </div>
+
+  <div id="w-stats" class="watch-stats" style="display:none">
+    <div class="ws-item"><span id="ws-total">—</span><small>Assistindo</small></div>
+    <div class="ws-item"><span id="ws-eps">—</span><small>Eps vistos</small></div>
+    <div class="ws-item"><span id="ws-avg">—</span><small>Score médio</small></div>
+  </div>
+
+  <!-- Últimos assistidos -->
+  <div id="w-recent" style="display:none;margin-bottom:32px">
+    <div class="rc-label">🕐 Últimos assistidos</div>
+    <div id="w-recent-cards" class="rc-wrap"></div>
+  </div>
+
+  <div id="w-loading" class="watch-loading">
+    <div class="wl-spinner"></div>
+    <p>Buscando lista no MyAnimeList…</p>
+  </div>
+  <div id="w-error" class="watch-error" style="display:none">
+    <p>⚠️ Não foi possível carregar a lista.</p>
+    <button class="btn-cy" onclick="loadWatching(true)" style="margin-top:10px;padding:8px 18px">Tentar novamente</button>
+  </div>
+
+  <div id="w-table-wrap" style="display:none">
+    <table class="wtable" id="w-table">
+      <thead>
+        <tr>
+          <th style="width:40px">#</th>
+          <th style="width:58px"></th>
+          <th>Anime</th>
+          <th style="width:120px">Progresso</th>
+          <th style="width:68px">Score</th>
+          <th style="width:88px">Tipo</th>
+        </tr>
+      </thead>
+      <tbody id="w-tbody"></tbody>
+    </table>
+  </div>
+  <div id="w-empty" class="no-results" style="display:none">Nenhum anime encontrado 🔍</div>
+
+  <!-- ── TOP SCORES ── -->
+  <div id="top-scores-wrap" style="display:none;margin-top:48px">
+    <div class="mal-section-label">🏆 Seus melhores avaliados</div>
+    <div id="top-scores-grid" class="top-grid"></div>
+    <div style="text-align:center;margin-top:18px">
+      <button class="btn-cy" id="top-show-more" onclick="topShowMore()" style="padding:10px 28px;font-size:.58rem;letter-spacing:2px">Ver mais</button>
+    </div>
+  </div>
+  <div id="top-loading" class="watch-loading" style="padding:32px 0;display:none">
+    <div class="wl-spinner"></div>
+    <p>Carregando top scores…</p>
+  </div>
+
+  <!-- ── GRÁFICO DE SCORES ── -->
+  <div id="score-chart-wrap" style="display:none;margin-top:52px">
+    <div class="mal-section-label">📈 Distribuição dos seus scores</div>
+    <div class="chart-box">
+      <div class="chart-bars" id="chart-bars"></div>
+      <div class="chart-xaxis">
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+      </div>
+      <div class="chart-summary" id="chart-summary"></div>
+    </div>
+  </div>
+
+  <!-- ── SURPRESA ── -->
+  <div style="margin-top:52px">
+    <div class="mal-section-label">🔀 Anime surpresa</div>
+    <div class="surprise-wrap">
+      <button class="surprise-btn" onclick="surpriseMe()" id="surprise-btn">
+        <span class="surprise-ico">🎲</span>
+        <span>Sortear da minha lista</span>
+      </button>
+      <div id="surprise-card" class="surprise-card" style="display:none">
+        <img id="sp-img" src="" alt="">
+        <div class="sp-body">
+          <div class="sp-badge" id="sp-badge"></div>
+          <div class="sp-title" id="sp-title"></div>
+          <div class="sp-meta" id="sp-meta"></div>
+          <div class="sp-score-row">
+            <span class="sp-score" id="sp-score"></span>
+            <a id="sp-link" href="#" target="_blank" class="sp-mal-btn">Ver no MAL ↗</a>
+          </div>
+          <div class="sp-synopsis" id="sp-synopsis"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="ft-logo">📺 TODDY · ANIME WORLD</div>
+  <div class="ft-sub">© 2026 · <a href="https://myanimelist.net/profile/XxT0DDyxX" target="_blank">MAL: XxT0DDyxX</a></div>
+</footer>
+
+<script src="js.js"></script>
+
+</body>
+</html>

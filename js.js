@@ -1,21 +1,42 @@
+// ── DRAWER (MENU HAMBÚRGUER) ──
+function toggleDrawer(){
+  const d=document.getElementById('drawer');
+  d.classList.contains('open')?closeDrawer():openDrawer();
+}
+function openDrawer(){
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+  document.getElementById('hamBtn').classList.add('open');
+}
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+  document.getElementById('hamBtn').classList.remove('open');
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+
+function updateDrawerActive(id){
+  document.querySelectorAll('.drawer-item').forEach(b=>b.classList.remove('active'));
+  const target=document.querySelector(`.drawer-item[data-page="${id}"]`);
+  if(target) target.classList.add('active');
+}
+
 // ── BOTTOM NAV ──
 function toggleMore(){
   document.getElementById('more-popup').classList.toggle('open');
   document.getElementById('more-overlay').classList.toggle('open');
 }
-
 function closeMore(){
   document.getElementById('more-popup').classList.remove('open');
   document.getElementById('more-overlay').classList.remove('open');
 }
 
 function navTo(id, el){
-  // Atualiza item ativo no bottom nav
   document.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('on'));
   if(el && el.classList.contains('bnav-item')) el.classList.add('on');
-  // Atualiza título no header
-  const label = el?.dataset?.label || '';
-  if(label) document.getElementById('page-title').textContent = label;
+  const label=el?.dataset?.label||'';
+  if(label) document.getElementById('page-title').textContent=label;
+  updateDrawerActive(id);
   show(id);
   closeMore();
   if(id==='assistindo'){
@@ -77,14 +98,14 @@ const TOP=[
 })();
 
 // ── TABS ──
-function show(id,el){
+function show(id){
   document.querySelectorAll('.tab').forEach(t=>{
     t.classList.remove('on');
     t.style.display='none';
   });
-  const t = document.getElementById('tab-'+id);
+  const t=document.getElementById('tab-'+id);
   if(!t) return;
-  t.style.display = 'block';
+  t.style.display='block';
   t.classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -94,7 +115,6 @@ let activeChip='todos';
 
 function doSearch(v){
   v=v.toLowerCase().trim();
-  document.getElementById('srch').value=v;
   applyFilter(v,activeChip);
 }
 function clearSrch(){
@@ -128,50 +148,38 @@ function applyFilter(txt,genre){
   document.getElementById('no-res').style.display=any?'none':'block';
 }
 
-// ── MAL STATS ──
-(async()=>{
-  try{
-    const r=await fetch('https://api.jikan.moe/v4/users/XxT0DDyxX/statistics');
-    const d=await r.json();
-    document.getElementById('hc').textContent=d.data.anime.completed.toLocaleString('pt-BR');
-    document.getElementById('hw').textContent=d.data.anime.watching.toLocaleString('pt-BR');
-  }catch(e){}
-})();
-
 // ── ASSISTINDO ──
 let watchData=[];
 let watchLoaded=false;
 
-const MAL_USER = 'XxT0DDyxX';
+const MAL_USER='XxT0DDyxX';
 
-const PROXIES = [
-  u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-  u => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
-  u => `https://proxy.cors.sh/${u}`,
+const PROXIES=[
+  u=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  u=>`https://corsproxy.io/?url=${encodeURIComponent(u)}`,
+  u=>`https://proxy.cors.sh/${u}`,
 ];
-let workingProxy = null; // guarda o proxy que funcionou
+let workingProxy=null;
 
 async function tryFetch(url){
-  // Se já temos um proxy funcionando, tenta ele primeiro
-  const ordered = workingProxy
-    ? [workingProxy, ...PROXIES.filter(p=>p!==workingProxy)]
-    : PROXIES;
-
+  const ordered=workingProxy
+    ?[workingProxy,...PROXIES.filter(p=>p!==workingProxy)]
+    :PROXIES;
   for(const proxy of ordered){
     try{
-      const ctrl = new AbortController();
-      const tid  = setTimeout(()=>ctrl.abort(), 12000);
-      const r = await fetch(proxy(url), { signal: ctrl.signal });
+      const ctrl=new AbortController();
+      const tid=setTimeout(()=>ctrl.abort(),12000);
+      const r=await fetch(proxy(url),{signal:ctrl.signal});
       clearTimeout(tid);
       if(r.ok){
-        const text = await r.text();
-        const trimmed = text.trim();
-        if(trimmed.startsWith('{') || trimmed.startsWith('[')){
-          workingProxy = proxy; // salva o que funcionou
+        const text=await r.text();
+        const trimmed=text.trim();
+        if(trimmed.startsWith('{')||trimmed.startsWith('[')){
+          workingProxy=proxy;
           return JSON.parse(trimmed);
         }
       }
-    }catch(e){ /* tenta próximo */ }
+    }catch(e){}
     await new Promise(res=>setTimeout(res,400));
   }
   throw new Error('Todos os proxies falharam');
@@ -179,110 +187,102 @@ async function tryFetch(url){
 
 async function fetchAllWatching(){
   let all=[];
-
-  // Tenta Jikan primeiro (pagina de 25 em 25)
   try{
-    let page=1, hasNext=true;
+    let page=1,hasNext=true;
     while(hasNext){
-      const d = await tryFetch(
-        `https://api.jikan.moe/v4/users/${MAL_USER}/animelist?status=watching&page=${page}`
-      );
-      if(!d || !Array.isArray(d.data)) throw new Error('formato inválido');
-      all = all.concat(d.data);
-      hasNext = !!(d.pagination?.has_next_page);
+      const d=await tryFetch(`https://api.jikan.moe/v4/users/${MAL_USER}/animelist?status=watching&page=${page}`);
+      if(!d||!Array.isArray(d.data)) throw new Error('formato inválido');
+      all=all.concat(d.data);
+      hasNext=!!(d.pagination?.has_next_page);
       page++;
       if(hasNext) await new Promise(res=>setTimeout(res,600));
     }
     if(all.length) return all;
-  }catch(e){ all=[]; workingProxy=null; }
+  }catch(e){ all=[];workingProxy=null; }
 
-  // Fallback: endpoint público do MAL (pagina de 300 em 300)
-  let offset=0, hasNext=true;
+  let offset=0,hasNext=true;
   while(hasNext){
-    const d = await tryFetch(
-      `https://myanimelist.net/animelist/${MAL_USER}/load.json?status=1&offset=${offset}`
-    );
-    const items = Array.isArray(d) ? d : [];
-    all = all.concat(items.map(x=>({
+    const d=await tryFetch(`https://myanimelist.net/animelist/${MAL_USER}/load.json?status=1&offset=${offset}`);
+    const items=Array.isArray(d)?d:[];
+    all=all.concat(items.map(x=>({
       anime:{
-        mal_id:       x.anime_id,
-        title:        x.anime_title,
-        num_episodes: x.anime_num_episodes,
-        type:         x.anime_media_type_string,
-        images:{ jpg:{ image_url: x.anime_image_path } }
+        mal_id:x.anime_id,
+        title:x.anime_title,
+        num_episodes:x.anime_num_episodes,
+        type:x.anime_media_type_string,
+        images:{jpg:{image_url:x.anime_image_path}}
       },
       list_status:{
-        score:                x.score,
-        num_episodes_watched: x.num_watched_episodes,
-        is_rewatching:        !!x.is_rewatching,
-        updated_at:           x.last_updated ? new Date(x.last_updated*1000).toISOString() : null
+        score:x.score,
+        num_episodes_watched:x.num_watched_episodes,
+        is_rewatching:!!x.is_rewatching,
+        updated_at:x.last_updated?new Date(x.last_updated*1000).toISOString():null
       }
     })));
-    hasNext = items.length === 300;
-    offset += 300;
+    hasNext=items.length===300;
+    offset+=300;
     if(hasNext) await new Promise(res=>setTimeout(res,500));
   }
   return all;
 }
 
 async function loadMalOverview(){
-  const ovEl   = document.getElementById('mal-overview');
-  const ovLoad = document.getElementById('mal-ov-loading');
+  const ovEl=document.getElementById('mal-overview');
+  const ovLoad=document.getElementById('mal-ov-loading');
   try{
-    // Busca perfil e stats em paralelo (endpoints separados no Jikan v4)
-    const [profileData, statsData] = await Promise.all([
+    const[profileData,statsData]=await Promise.all([
       tryFetch(`https://api.jikan.moe/v4/users/${MAL_USER}`),
       tryFetch(`https://api.jikan.moe/v4/users/${MAL_USER}/statistics`)
     ]);
+    const u=profileData.data||profileData;
+    const stats=(statsData.data||statsData)?.anime||{};
 
-    const u     = profileData.data || profileData;
-    const stats = (statsData.data || statsData)?.anime || {};
-
-    // Avatar e info
-    const avatar = u.images?.jpg?.image_url || u.images?.webp?.image_url || '';
-    if(avatar) document.getElementById('mal-avatar').src = avatar;
+    const avatar=u.images?.jpg?.image_url||u.images?.webp?.image_url||'';
+    if(avatar){
+      document.getElementById('mal-avatar').src=avatar;
+      const drawerAv=document.getElementById('drawer-avatar-img');
+      if(drawerAv){ drawerAv.src=avatar; drawerAv.style.display='block'; }
+    }
     if(u.joined){
-      const joined = new Date(u.joined).toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
-      document.getElementById('mal-joined').textContent = 'No MAL desde ' + joined;
+      const joined=new Date(u.joined).toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+      document.getElementById('mal-joined').textContent='No MAL desde '+joined;
     }
 
-    // Cards de stats — campos corretos da API Jikan v4 /statistics
-    const watching   = stats.watching    || 0;
-    const completed  = stats.completed   || 0;
-    const on_hold    = stats.on_hold     || 0;
-    const dropped    = stats.dropped     || 0;
-    const ptw        = stats.plan_to_watch || 0;
-    const mean_score = stats.mean_score  || 0;
-    const episodes   = stats.episodes_watched || 0;
-    const days       = stats.days_watched || 0;
+    const watching=stats.watching||0;
+    const completed=stats.completed||0;
+    const on_hold=stats.on_hold||0;
+    const dropped=stats.dropped||0;
+    const ptw=stats.plan_to_watch||0;
+    const mean_score=stats.mean_score||0;
+    const episodes=stats.episodes_watched||0;
+    const days=stats.days_watched||0;
 
-    document.getElementById('ov-watching').textContent  = watching.toLocaleString('pt-BR');
-    document.getElementById('ov-completed').textContent = completed.toLocaleString('pt-BR');
-    document.getElementById('ov-hold').textContent      = on_hold.toLocaleString('pt-BR');
-    document.getElementById('ov-dropped').textContent   = dropped.toLocaleString('pt-BR');
-    document.getElementById('ov-ptw').textContent       = ptw.toLocaleString('pt-BR');
-    document.getElementById('ov-score').textContent     = mean_score.toFixed(2);
-    document.getElementById('ov-eps').textContent       = episodes.toLocaleString('pt-BR');
-    document.getElementById('ov-days').textContent      = days.toFixed(1);
+    document.getElementById('ov-watching').textContent=watching.toLocaleString('pt-BR');
+    document.getElementById('ov-completed').textContent=completed.toLocaleString('pt-BR');
+    document.getElementById('ov-hold').textContent=on_hold.toLocaleString('pt-BR');
+    document.getElementById('ov-dropped').textContent=dropped.toLocaleString('pt-BR');
+    document.getElementById('ov-ptw').textContent=ptw.toLocaleString('pt-BR');
+    document.getElementById('ov-score').textContent=mean_score.toFixed(2);
+    document.getElementById('ov-eps').textContent=episodes.toLocaleString('pt-BR');
+    document.getElementById('ov-days').textContent=days.toFixed(1);
 
-    // Barra proporcional
-    const total = watching + completed + on_hold + dropped + ptw;
-    if(total > 0){
-      const bar = document.getElementById('ov-bar');
-      bar.innerHTML = [
-        ['#4caf50',               watching],
-        ['#2196f3',               completed],
-        ['var(--gold)',            on_hold],
-        ['#f44336',               dropped],
-        ['rgba(255,255,255,.2)',   ptw],
+    const total=watching+completed+on_hold+dropped+ptw;
+    if(total>0){
+      const bar=document.getElementById('ov-bar');
+      bar.innerHTML=[
+        ['#4caf50',watching],
+        ['#2196f3',completed],
+        ['var(--gold)',on_hold],
+        ['#f44336',dropped],
+        ['rgba(255,255,255,.2)',ptw],
       ].map(([c,v])=>`<div style="width:${(v/total*100).toFixed(2)}%;background:${c}"></div>`).join('');
     }
 
-    ovLoad.style.display = 'none';
-    ovEl.style.display   = 'block';
+    ovLoad.style.display='none';
+    ovEl.style.display='block';
   }catch(e){
-    console.error('Overview error:', e);
-    ovLoad.style.display = 'none';
+    console.error('Overview error:',e);
+    ovLoad.style.display='none';
   }
 }
 
@@ -297,7 +297,6 @@ async function loadWatching(force=false){
   wrap.style.display='none';
   stats.style.display='none';
 
-  // Carrega overview e lista em paralelo
   loadMalOverview();
 
   try{
@@ -316,21 +315,18 @@ async function loadWatching(force=false){
 }
 
 function updateWatchStats(data){
-  const total  = data.length;
-  // Jikan v4: list_status.num_episodes_watched
-  const eps    = data.reduce((s,a)=>s+(a.list_status?.num_episodes_watched||0),0);
-  const scored = data.filter(a=>(a.list_status?.score||0)>0);
-  const avg    = scored.length
-    ? (scored.reduce((s,a)=>s+a.list_status.score,0)/scored.length).toFixed(1)
-    : '—';
-  document.getElementById('ws-total').textContent = total;
-  document.getElementById('ws-eps').textContent   = eps.toLocaleString('pt-BR');
-  document.getElementById('ws-avg').textContent   = avg;
+  const total=data.length;
+  const eps=data.reduce((s,a)=>s+(a.list_status?.num_episodes_watched||0),0);
+  const scored=data.filter(a=>(a.list_status?.score||0)>0);
+  const avg=scored.length?(scored.reduce((s,a)=>s+a.list_status.score,0)/scored.length).toFixed(1):'—';
+  document.getElementById('ws-total').textContent=total;
+  document.getElementById('ws-eps').textContent=eps.toLocaleString('pt-BR');
+  document.getElementById('ws-avg').textContent=avg;
 }
 
 function renderWatchTable(data){
-  const tbody = document.getElementById('w-tbody');
-  tbody.innerHTML = '';
+  const tbody=document.getElementById('w-tbody');
+  tbody.innerHTML='';
   if(!data.length){
     document.getElementById('w-empty').style.display='block';
     document.getElementById('w-table-wrap').style.display='none';
@@ -340,25 +336,24 @@ function renderWatchTable(data){
   document.getElementById('w-table-wrap').style.display='block';
 
   data.forEach((a,i)=>{
-    // Jikan v4 animelist: { anime:{mal_id,title,images,num_episodes,type}, list_status:{score,num_episodes_watched,...} }
-    const anime   = a.anime || {};
-    const ls      = a.list_status || {};
-    const title   = anime.title || '—';
-    const malId   = anime.mal_id || '';
-    const img     = anime.images?.jpg?.image_url || anime.images?.webp?.image_url || '';
-    const url     = malId ? `https://myanimelist.net/anime/${malId}` : '#';
-    const watched = ls.num_episodes_watched || 0;
-    const totalEp = anime.num_episodes || 0;
-    const pct     = totalEp > 0 ? Math.round((watched/totalEp)*100) : 0;
-    const score   = ls.score || 0;
-    const type    = anime.type || '—';
-    const scoreClass = score>=8?'s-high':score>=6?'s-mid':score>0?'s-low':'s-none';
-    const scoreDisp  = score > 0 ? score : '—';
+    const anime=a.anime||{};
+    const ls=a.list_status||{};
+    const title=anime.title||'—';
+    const malId=anime.mal_id||'';
+    const img=anime.images?.jpg?.image_url||anime.images?.webp?.image_url||'';
+    const url=malId?`https://myanimelist.net/anime/${malId}`:'#';
+    const watched=ls.num_episodes_watched||0;
+    const totalEp=anime.num_episodes||0;
+    const pct=totalEp>0?Math.round((watched/totalEp)*100):0;
+    const score=ls.score||0;
+    const type=anime.type||'—';
+    const scoreClass=score>=8?'s-high':score>=6?'s-mid':score>0?'s-low':'s-none';
+    const scoreDisp=score>0?score:'—';
 
-    const tr = document.createElement('tr');
-    tr.dataset.title   = title.toLowerCase();
-    tr.dataset.updated = ls.updated_at || '';
-    tr.innerHTML = `
+    const tr=document.createElement('tr');
+    tr.dataset.title=title.toLowerCase();
+    tr.dataset.updated=ls.updated_at||'';
+    tr.innerHTML=`
       <td class="wt-num">${i+1}</td>
       <td class="wt-img"><a href="${url}" target="_blank"><img src="${img}" alt="${title}" loading="lazy" onerror="this.style.opacity='.15'"></a></td>
       <td class="wt-name">
@@ -378,28 +373,24 @@ function renderWatchTable(data){
 }
 
 function renderRecent(data){
-  const wrap = document.getElementById('w-recent');
+  const wrap=document.getElementById('w-recent');
   if(!wrap) return;
-  const sorted = [...data]
+  const sorted=[...data]
     .filter(a=>a.list_status?.updated_at)
     .sort((a,b)=>new Date(b.list_status.updated_at)-new Date(a.list_status.updated_at))
     .slice(0,5);
   if(!sorted.length){ wrap.style.display='none'; return; }
   wrap.style.display='block';
-  document.getElementById('w-recent-cards').innerHTML = sorted.map(a=>{
-    const anime   = a.anime || {};
-    const ls      = a.list_status || {};
-    const img     = anime.images?.jpg?.image_url || '';
-    const url     = `https://myanimelist.net/anime/${anime.mal_id}`;
-    const watched = ls.num_episodes_watched||0;
-    const totalEp = anime.num_episodes||0;
-    const pct     = totalEp>0?Math.round((watched/totalEp)*100):0;
-    const date    = ls.updated_at
-      ? new Date(ls.updated_at).toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})
-      : '';
-    const score   = ls.score>0
-      ? `<span class="rc-score ${ls.score>=8?'s-high':ls.score>=6?'s-mid':'s-low'}">${ls.score}</span>`
-      : '';
+  document.getElementById('w-recent-cards').innerHTML=sorted.map(a=>{
+    const anime=a.anime||{};
+    const ls=a.list_status||{};
+    const img=anime.images?.jpg?.image_url||'';
+    const url=`https://myanimelist.net/anime/${anime.mal_id}`;
+    const watched=ls.num_episodes_watched||0;
+    const totalEp=anime.num_episodes||0;
+    const pct=totalEp>0?Math.round((watched/totalEp)*100):0;
+    const date=ls.updated_at?new Date(ls.updated_at).toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}):'';
+    const score=ls.score>0?`<span class="rc-score ${ls.score>=8?'s-high':ls.score>=6?'s-mid':'s-low'}">${ls.score}</span>`:'';
     return `<div class="rc-card">
       <a href="${url}" target="_blank">
         <img src="${img}" alt="${anime.title}" onerror="this.style.opacity='.15'">
@@ -427,58 +418,52 @@ function filterWatch(v){
 function sortWatch(by){
   if(!watchData.length) return;
   const sorted=[...watchData];
-  if(by==='alpha')       sorted.sort((a,b)=>(a.anime?.title||'').localeCompare(b.anime?.title||''));
-  else if(by==='score')  sorted.sort((a,b)=>(b.list_status?.score||0)-(a.list_status?.score||0));
-  else if(by==='ep')     sorted.sort((a,b)=>(b.list_status?.num_episodes_watched||0)-(a.list_status?.num_episodes_watched||0));
-  else if(by==='recent') sorted.sort((a,b)=>new Date(b.list_status?.updated_at||0)-new Date(a.list_status?.updated_at||0));
+  if(by==='alpha')      sorted.sort((a,b)=>(a.anime?.title||'').localeCompare(b.anime?.title||''));
+  else if(by==='score') sorted.sort((a,b)=>(b.list_status?.score||0)-(a.list_status?.score||0));
+  else if(by==='ep')    sorted.sort((a,b)=>(b.list_status?.num_episodes_watched||0)-(a.list_status?.num_episodes_watched||0));
+  else if(by==='recent')sorted.sort((a,b)=>new Date(b.list_status?.updated_at||0)-new Date(a.list_status?.updated_at||0));
   renderWatchTable(sorted);
   const v=document.getElementById('w-srch').value;
   if(v) filterWatch(v);
 }
 
 // ── TOP SCORES ──
-let topData     = [];
-let topLoaded   = false;
-let topShowing  = 12;
+let topData=[];
+let topLoaded=false;
+let topShowing=12;
 
 async function loadTopScores(){
   if(topLoaded) return;
-  const tl = document.getElementById('top-loading');
-  const tw = document.getElementById('top-scores-wrap');
-  tl.style.display = 'block';
+  const tl=document.getElementById('top-loading');
+  const tw=document.getElementById('top-scores-wrap');
+  tl.style.display='block';
   try{
-    let all=[], offset=0, hasNext=true;
-    // Busca lista completa (completed) via MAL load.json — mais rápido e sem paginação do Jikan
+    let all=[],offset=0,hasNext=true;
     while(hasNext){
-      const d = await tryFetch(
-        `https://myanimelist.net/animelist/${MAL_USER}/load.json?status=2&order=4&sort=desc&offset=${offset}`
-      );
-      const items = Array.isArray(d) ? d : [];
-      all = all.concat(items.map(x=>({
-        id:    x.anime_id,
-        title: x.anime_title,
-        img:   x.anime_image_path,
-        score: x.score,
-        type:  x.anime_media_type_string,
-        eps:   x.anime_num_episodes,
-        year:  x.anime_start_date_string ? x.anime_start_date_string.slice(-4) : ''
+      const d=await tryFetch(`https://myanimelist.net/animelist/${MAL_USER}/load.json?status=2&order=4&sort=desc&offset=${offset}`);
+      const items=Array.isArray(d)?d:[];
+      all=all.concat(items.map(x=>({
+        id:x.anime_id,
+        title:x.anime_title,
+        img:x.anime_image_path,
+        score:x.score,
+        type:x.anime_media_type_string,
+        eps:x.anime_num_episodes,
+        year:x.anime_start_date_string?x.anime_start_date_string.slice(-4):''
       })));
-      hasNext = items.length === 300;
-      offset += 300;
+      hasNext=items.length===300;
+      offset+=300;
       if(hasNext) await new Promise(res=>setTimeout(res,400));
     }
-    // Ordena por score desc, filtra só com score > 0
-    topData = all
-      .filter(a=>a.score>0)
-      .sort((a,b)=>b.score-a.score);
-    topLoaded = true;
-    tl.style.display = 'none';
-    tw.style.display = 'block';
+    topData=all.filter(a=>a.score>0).sort((a,b)=>b.score-a.score);
+    topLoaded=true;
+    tl.style.display='none';
+    tw.style.display='block';
     renderTopGrid();
     renderScoreChart(topData);
   }catch(e){
-    tl.style.display = 'none';
-    console.error('Top scores error:', e);
+    tl.style.display='none';
+    console.error('Top scores error:',e);
   }
 }
 
@@ -491,10 +476,10 @@ function scoreClass(s){
 }
 
 function renderTopGrid(){
-  const grid = document.getElementById('top-scores-grid');
-  const btn  = document.getElementById('top-show-more');
-  const slice = topData.slice(0, topShowing);
-  grid.innerHTML = slice.map((a,i)=>`
+  const grid=document.getElementById('top-scores-grid');
+  const btn=document.getElementById('top-show-more');
+  const slice=topData.slice(0,topShowing);
+  grid.innerHTML=slice.map((a,i)=>`
     <a class="top-card" href="https://myanimelist.net/anime/${a.id}" target="_blank">
       <img src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.style.opacity='.1'">
       <div class="top-card-rank">${i+1}</div>
@@ -504,34 +489,30 @@ function renderTopGrid(){
         <div class="top-card-meta">${a.type||''}${a.year?' · '+a.year:''}</div>
       </div>
     </a>`).join('');
-  btn.style.display = topShowing >= topData.length ? 'none' : 'inline-block';
+  btn.style.display=topShowing>=topData.length?'none':'inline-block';
 }
 
 function topShowMore(){
-  topShowing += 12;
+  topShowing+=12;
   renderTopGrid();
 }
 
 // ── GRÁFICO DE SCORES ──
 function renderScoreChart(data){
-  const wrap = document.getElementById('score-chart-wrap');
-  if(!wrap || !data.length) return;
+  const wrap=document.getElementById('score-chart-wrap');
+  if(!wrap||!data.length) return;
 
-  // Conta quantos animes têm cada score (1-10)
-  const counts = Array(11).fill(0); // índice 0 ignorado
+  const counts=Array(11).fill(0);
   data.forEach(a=>{ if(a.score>=1&&a.score<=10) counts[a.score]++; });
 
-  const max    = Math.max(...counts.slice(1));
-  const total  = counts.slice(1).reduce((s,v)=>s+v,0);
-  const scored = data.filter(a=>a.score>0);
-  const avg    = scored.length
-    ? (scored.reduce((s,a)=>s+a.score,0)/scored.length).toFixed(2)
-    : '—';
-  const mode   = counts.indexOf(Math.max(...counts.slice(1)));
-  const pct10  = total>0?(counts[10]/total*100).toFixed(1):'0';
+  const max=Math.max(...counts.slice(1));
+  const total=counts.slice(1).reduce((s,v)=>s+v,0);
+  const scored=data.filter(a=>a.score>0);
+  const avg=scored.length?(scored.reduce((s,a)=>s+a.score,0)/scored.length).toFixed(2):'—';
+  const mode=counts.indexOf(Math.max(...counts.slice(1)));
+  const pct10=total>0?(counts[10]/total*100).toFixed(1):'0';
 
-  // Gradiente de cor por score
-  const barColor = s => {
+  const barColor=s=>{
     if(s<=3)  return '#f44336';
     if(s<=5)  return '#ff9800';
     if(s<=6)  return 'var(--muted)';
@@ -541,11 +522,11 @@ function renderScoreChart(data){
     return '#ff6bcb';
   };
 
-  const barsEl = document.getElementById('chart-bars');
-  barsEl.innerHTML = Array.from({length:10},(_,i)=>{
-    const s   = i+1;
-    const cnt = counts[s];
-    const h   = max>0 ? Math.max((cnt/max)*100,cnt>0?4:0) : 0;
+  const barsEl=document.getElementById('chart-bars');
+  barsEl.innerHTML=Array.from({length:10},(_,i)=>{
+    const s=i+1;
+    const cnt=counts[s];
+    const h=max>0?Math.max((cnt/max)*100,cnt>0?4:0):0;
     return `<div class="chart-bar-wrap">
       <div class="chart-bar-count">${cnt||''}</div>
       <div class="chart-bar" style="height:${h}%;background:${barColor(s)}"
@@ -553,99 +534,115 @@ function renderScoreChart(data){
     </div>`;
   }).join('');
 
-  // Summary
-  document.getElementById('chart-summary').innerHTML = `
+  document.getElementById('chart-summary').innerHTML=`
     <div class="chart-sum-item"><span>${total.toLocaleString('pt-BR')}</span><small>Com score</small></div>
     <div class="chart-sum-item"><span>${avg}</span><small>Média</small></div>
     <div class="chart-sum-item"><span>${mode}</span><small>Score mais dado</small></div>
     <div class="chart-sum-item"><span>${pct10}%</span><small>Notas 10</small></div>
   `;
 
-  wrap.style.display = 'block';
+  wrap.style.display='block';
 }
 
 // ── SURPRESA ──
-let surprisePool = []; // cache da lista completa
+let surprisePool=[];
 
 async function surpriseMe(){
-  const btn  = document.getElementById('surprise-btn');
-  const card = document.getElementById('surprise-card');
+  const btn=document.getElementById('surprise-btn');
+  const card=document.getElementById('surprise-card');
 
   btn.classList.add('spinning');
-  btn.disabled = true;
+  btn.disabled=true;
 
   try{
-    // Monta pool na primeira vez (usa topData se já carregado, senão busca)
-    if(surprisePool.length === 0){
-      if(topData.length > 0){
-        surprisePool = topData;
-      } else {
-        // Busca lista completa de completados
-        let all=[], offset=0, hasNext=true;
+    if(surprisePool.length===0){
+      if(topData.length>0){
+        surprisePool=topData;
+      }else{
+        let all=[],offset=0,hasNext=true;
         while(hasNext){
-          const d = await tryFetch(
-            `https://myanimelist.net/animelist/${MAL_USER}/load.json?status=2&offset=${offset}`
-          );
-          const items = Array.isArray(d) ? d : [];
-          all = all.concat(items.map(x=>({
-            id:    x.anime_id,
-            title: x.anime_title,
-            img:   x.anime_image_path,
-            score: x.score,
-            type:  x.anime_media_type_string,
-            eps:   x.anime_num_episodes,
-            year:  x.anime_start_date_string ? x.anime_start_date_string.slice(-4) : ''
+          const d=await tryFetch(`https://myanimelist.net/animelist/${MAL_USER}/load.json?status=2&offset=${offset}`);
+          const items=Array.isArray(d)?d:[];
+          all=all.concat(items.map(x=>({
+            id:x.anime_id,
+            title:x.anime_title,
+            img:x.anime_image_path,
+            score:x.score,
+            type:x.anime_media_type_string,
+            eps:x.anime_num_episodes,
+            year:x.anime_start_date_string?x.anime_start_date_string.slice(-4):''
           })));
-          hasNext = items.length === 300;
-          offset += 300;
+          hasNext=items.length===300;
+          offset+=300;
           if(hasNext) await new Promise(res=>setTimeout(res,400));
         }
-        surprisePool = all;
+        surprisePool=all;
       }
     }
 
     if(!surprisePool.length) throw new Error('lista vazia');
 
-    // Sorteia aleatório
-    const pick = surprisePool[Math.floor(Math.random() * surprisePool.length)];
+    const pick=surprisePool[Math.floor(Math.random()*surprisePool.length)];
 
-    // Busca sinopse via Jikan
-    let synopsis = '';
+    let synopsis='';
     try{
-      const det = await tryFetch(`https://api.jikan.moe/v4/anime/${pick.id}`);
-      synopsis = det.data?.synopsis || '';
-      // Remove "(Source...)" do fim
-      synopsis = synopsis.replace(/\(Source:.*?\)/gi,'').trim();
+      const det=await tryFetch(`https://api.jikan.moe/v4/anime/${pick.id}`);
+      synopsis=det.data?.synopsis||'';
+      synopsis=synopsis.replace(/\(Source:.*?\)/gi,'').trim();
     }catch(e){}
 
-    // Preenche card
-    document.getElementById('sp-img').src       = pick.img || '';
-    document.getElementById('sp-title').textContent = pick.title;
-    document.getElementById('sp-badge').textContent = '🎲 Sorteado da sua lista';
-    document.getElementById('sp-meta').textContent  =
-      [pick.type, pick.eps ? pick.eps+' eps' : '', pick.year].filter(Boolean).join(' · ');
-    document.getElementById('sp-link').href      = `https://myanimelist.net/anime/${pick.id}`;
-    document.getElementById('sp-synopsis').textContent = synopsis || 'Sem sinopse disponível.';
+    document.getElementById('sp-img').src=pick.img||'';
+    document.getElementById('sp-title').textContent=pick.title;
+    document.getElementById('sp-badge').textContent='🎲 Sorteado da sua lista';
+    document.getElementById('sp-meta').textContent=[pick.type,pick.eps?pick.eps+' eps':'',pick.year].filter(Boolean).join(' · ');
+    document.getElementById('sp-link').href=`https://myanimelist.net/anime/${pick.id}`;
+    document.getElementById('sp-synopsis').textContent=synopsis||'Sem sinopse disponível.';
 
-    const scoreEl = document.getElementById('sp-score');
-    if(pick.score > 0){
-      scoreEl.textContent = '★ ' + pick.score;
-      scoreEl.className   = 'sp-score';
-    } else {
-      scoreEl.textContent = 'Sem score';
-      scoreEl.className   = 'sp-score none';
+    const scoreEl=document.getElementById('sp-score');
+    if(pick.score>0){
+      scoreEl.textContent='★ '+pick.score;
+      scoreEl.className='sp-score';
+    }else{
+      scoreEl.textContent='Sem score';
+      scoreEl.className='sp-score none';
     }
 
-    card.style.display = 'flex';
-
+    card.style.display='flex';
   }catch(e){
-    console.error('Surpresa error:', e);
+    console.error('Surpresa error:',e);
   }
 
   btn.classList.remove('spinning');
-  btn.disabled = false;
+  btn.disabled=false;
 }
 
 // Auto-carrega aba inicial
 loadWatching();
 loadTopScores();
+
+// ── VISUAL NOVEL ──
+let vnGenre = 'todos';
+
+function vnChip(g, el) {
+  vnGenre = g;
+  document.querySelectorAll('#vn-chips .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  vnApply();
+}
+
+function vnFilter(v) {
+  vnApply(v);
+}
+
+function vnApply(txt) {
+  txt = (txt !== undefined ? txt : document.getElementById('vn-srch').value).toLowerCase().trim();
+  let any = false;
+  document.querySelectorAll('#vn-grid .vn-card').forEach(card => {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const name = (card.dataset.name || '').toLowerCase();
+    const ok = (vnGenre === 'todos' || tags.includes(vnGenre)) && (!txt || name.includes(txt) || tags.includes(txt));
+    card.style.display = ok ? '' : 'none';
+    if (ok) any = true;
+  });
+  document.getElementById('vn-no-res').style.display = any ? 'none' : 'block';
+}

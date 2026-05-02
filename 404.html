@@ -13,12 +13,61 @@
 
 <header>
   <div class="hrow1">
+    <button class="hamburger" id="hamburger-btn" onclick="toggleDrawer()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
     <div class="logo">📺 TODDY</div>
     <div class="logo-sep"></div>
     <div class="page-title" id="page-title">Assistindo</div>
     <a class="mal-link" href="https://myanimelist.net/profile/XxT0DDyxX" target="_blank">MAL ↗</a>
   </div>
 </header>
+
+<!-- Drawer overlay -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<!-- Drawer lateral -->
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">📺 TODDY</div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-nav">
+    <div class="drawer-section-label">Navegação</div>
+    <button class="drawer-item" onclick="navFromDrawer('assistindo','Assistindo')">
+      <span class="drawer-ico">▶️</span><span>Assistindo</span>
+    </button>
+    <button class="drawer-item" onclick="navFromDrawer('top','Top 30')">
+      <span class="drawer-ico">🌟</span><span>Top 30</span>
+    </button>
+    <button class="drawer-item" onclick="navFromDrawer('generos','Gêneros')">
+      <span class="drawer-ico">🎭</span><span>Gêneros</span>
+    </button>
+    <button class="drawer-item" onclick="navFromDrawer('favchars','Personagens')">
+      <span class="drawer-ico">❤️</span><span>Personagens</span>
+    </button>
+    <div class="drawer-divider"></div>
+    <div class="drawer-section-label">Mais páginas</div>
+    <button class="drawer-item" onclick="navFromDrawer('primeiros','Primeiros Animes')">
+      <span class="drawer-ico">🌱</span><span>Primeiros Animes</span>
+    </button>
+    <button class="drawer-item" onclick="navFromDrawer('musicas','Músicas')">
+      <span class="drawer-ico">🎵</span><span>Músicas</span>
+    </button>
+    <button class="drawer-item" onclick="navFromDrawer('marcos','Marcos')">
+      <span class="drawer-ico">🏆</span><span>Marcos</span>
+    </button>
+    <button class="drawer-item" onclick="navFromDrawer('gacha','Gacha')">
+      <span class="drawer-ico">🎮</span><span>Gacha</span>
+    </button>
+    <button class="drawer-item" onclick="navFromDrawer('vn','Visual Novel')">
+      <span class="drawer-ico">📖</span><span>Visual Novel</span>
+    </button>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://myanimelist.net/profile/XxT0DDyxX" target="_blank" class="drawer-mal-link">MAL: XxT0DDyxX ↗</a>
+  </div>
+</div>
 
 <!-- Bottom Navigation -->
 <nav class="bnav">
@@ -52,8 +101,8 @@
   <button class="more-item" onclick="navTo('musicas',null)">🎵 Músicas</button>
   <button class="more-item" onclick="navTo('marcos',null)">🏆 Marcos</button>
   <button class="more-item" onclick="navTo('gacha',null)">🎮 Gacha</button>
+  <button class="more-item" onclick="navTo('vn',null)">📖 Visual Novel</button>
 </div>
-
 
 <main>
 
@@ -195,7 +244,7 @@
       <div class="ac" data-name="higurashi psicologico" data-tags="psicologico terror gore"><img src="https://cdn.myanimelist.net/images/anime/12/19634.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Higurashi</p></div></div>
       <div class="ac" data-name="classroom of the elite youkoso" data-tags="psicologico escolar drama"><img src="https://m.media-amazon.com/images/M/MV5BMDg3MGVhNWUtYTQ2NS00ZDdiLTg5MTMtZmM5MjUzN2IxN2I4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Classroom of the Elite</p></div></div>
       <div class="ac" data-name="steins gate psicologico" data-tags="psicologico scifi thriller"><img src="https://m.media-amazon.com/images/M/MV5BZjI1YjZiMDUtZTI3MC00YTA5LWIzMmMtZmQ0NTZiYWM4NTYwXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Steins;Gate</p></div></div>
-      <div class="ac" data-name=""><img src="https://myanimelist.net/images/anime/5/71553.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Death Parade</p></div></div>
+      <div class="ac"><img src="https://myanimelist.net/images/anime/5/71553.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Death Parade</p></div></div>
     </div>
   </div>
 
@@ -206,9 +255,9 @@
       <div class="ac" data-name="grimgar fantasy ash isekai" data-tags="isekai drama fantasia acao"><img src="https://m.media-amazon.com/images/M/MV5BMmUyNzNmMDEtNjYzYi00ZDcwLTg4NTQtZTUzYzBiZTYwNzYyXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Grimgar</p></div></div>
       <div class="ac" data-name="no game no life isekai" data-tags="isekai jogo comedia fantasia"><img src="https://cdn.myanimelist.net/images/anime/1074/111944.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">No Game No Life</p></div></div>
       <div class="ac" data-name="Youjo Senki" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/5/82890.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Youjo Senki</p></div></div>
-      <div class="ac" data-name="" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/1091/128729.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Kage no Jitsuryokusha ni Naritakute!</p></div></div>
-      <div class="ac" data-name="" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/1638/119321.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Kono Subarashi</p></div></div>
-      <div class="ac" data-name="" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/1743/125204.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Isekai Ojisan</p></div></div>
+      <div class="ac" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/1091/128729.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Kage no Jitsuryokusha ni Naritakute!</p></div></div>
+      <div class="ac" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/1638/119321.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Kono Subarashi</p></div></div>
+      <div class="ac" data-tags="isekai aventura fantasia"><img src="https://myanimelist.net/images/anime/1743/125204.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Isekai Ojisan</p></div></div>
     </div>
   </div>
 
@@ -367,6 +416,7 @@
     <div class="gc"><div class="gc-banner"><img src="https://m.media-amazon.com/images/M/MV5BN2U3MWIzYTEtMGY0Yi00ZGE1LTk0ZWEtYTJlMzNkZTY1YWYyXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="gc-overlay"><div class="gc-icon">🏹</div><h3>ARKNIGHTS</h3><div class="gc-genre">Tower Defense · Strategy</div></div></div><div class="gc-body"><p>Lore profundo. Perish in Frost é a melhor história já contada em gacha.</p><div class="gc-tags"><span class="gt">Strategy</span><span class="gt">Dark Lore</span><span class="gt">Hypergryph</span></div></div></div>
     <div class="gc"><div class="gc-banner"><img src="https://webstatic.hoyoverse.com/upload/op-public/2023/09/14/3c862d085db721a5625b6e12649399bc_8067514115196038699.png" loading="lazy"><div class="gc-overlay"><div class="gc-icon">🚂</div><h3>HONKAI: STAR RAIL</h3><div class="gc-genre">Turn-based RPG</div></div></div><div class="gc-body"><p>Narrativa rica com personagens inesquecíveis. Sistema de batalha viciante.</p><div class="gc-tags"><span class="gt">Turn-based</span><span class="gt">miHoYo</span><span class="gt">Story</span></div></div></div>
     <div class="gc"><div class="gc-banner"><img src="https://fastcdn.hoyoverse.com/content-v2/plat/124392/3ba9a74bbed3272ff0a14e861e1e8418_8953409163702722405.png" loading="lazy"><div class="gc-overlay"><div class="gc-icon">⚔️</div><h3>Zenless Zone Zero</h3><div class="gc-genre">Action RPG · Open World</div></div></div><div class="gc-body"><p>Mundo open world imenso com personagens únicos e trilha sonora excepcional.</p><div class="gc-tags"><span class="gt">Open World</span><span class="gt">miHoYo</span><span class="gt">Co-op</span></div></div></div>
+    <div class="gc"><div class="gc-banner"><img src="https://preview.redd.it/chaos-zero-nightmare-has-released-and-begun-official-service-v0-xlzhc3p0fkwf1.png?width=1080&crop=smart&auto=webp&s=9dca1b41b9a4f9d900f416b9799adb594b29da48" loading="lazy"><div class="gc-overlay"><div class="gc-icon">⚔️</div><h3>chaos zero nightmare</h3><div class="gc-genre">Turn-based RPG</div></div></div><div class="gc-body"><p>Uma história sombria com escolhas ramificadas, ilustrações vibrantes.</p><div class="gc-tags"><span class="gt">Turn-based</span><span class="gt">Super Creative</span><span class="gt">Story</span></div></div></div>
   </div>
 
   <!-- ══ PERSONAGENS DE GACHA ══ -->
@@ -385,8 +435,6 @@
     <div class="fc f"><div class="fc-badge">♀</div><img src="https://cdnb.artstation.com/p/assets/images/images/027/877/765/large/yan-ling-chen-.jpg?1592837088" loading="lazy" onerror="this.src='https://i.pinimg.com/736x/3e/4f/5a/3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b.jpg'"><div class="fc-info"><p class="fc-name">Amiya</p><p class="fc-from">Arknights</p></div></div>
     <div class="fc f"><div class="fc-badge">♀</div><img src="https://i.pinimg.com/474x/b9/2a/55/b92a55f00052e59420c1b67530c1499c.jpg" loading="lazy" onerror="this.src='https://static.wikia.nocookie.net/mrfz/images/6/6e/W.png/revision/latest?cb=20200101000000'"><div class="fc-info"><p class="fc-name">W</p><p class="fc-from">Arknights</p></div></div>
   </div>
-
-
 
   <div class="gblock-title" style="margin:36px 0 14px">🚂 Honkai: Star Rail</div>
   <div class="fav-row">
@@ -575,6 +623,81 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+
+<!-- ══ VISUAL NOVEL ══ -->
+<div class="tab" id="tab-vn">
+<div class="sec">
+  <div class="sec-hd">
+    <div class="sec-n">VN</div>
+    <div><div class="sec-eye">Histórias Interativas</div><h2 class="sec-ttl">Visual Novel</h2></div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="search-bar">
+    <span class="search-ico">🔍</span>
+    <input id="vn-srch" type="text" placeholder="Buscar visual novel..." oninput="vnFilter(this.value)">
+    <button class="search-clr" onclick="document.getElementById('vn-srch').value='';vnFilter('')">✕</button>
+  </div>
+  <div class="chips" id="vn-chips">
+    <button class="chip on" onclick="vnChip('todos',this)">Todos</button>
+    <button class="chip" onclick="vnChip('romance',this)">💖 Romance</button>
+    <button class="chip" onclick="vnChip('drama',this)">🎭 Drama</button>
+    <button class="chip" onclick="vnChip('suspense',this)">🕵️ Suspense</button>
+    <button class="chip" onclick="vnChip('sobrenatural',this)">👻 Sobrenatural</button>
+    <button class="chip" onclick="vnChip('fantasia',this)">🪄 Fantasia</button>
+    <button class="chip" onclick="vnChip('scifi',this)">🚀 Sci-Fi</button>
+    <button class="chip" onclick="vnChip('horror',this)">💀 Horror</button>
+    <button class="chip" onclick="vnChip('fate',this)">⚔️ Fate</button>
+  </div>
+
+  <div class="vn-stats-bar">
+    <div class="vn-stat"><span class="vn-stat-n" id="vn-total">2</span><small>Jogadas</small></div>
+    <div class="vn-stat"><span class="vn-stat-n" id="vn-completas">2</span><small>Completas</small></div>
+    <div class="vn-stat"><span class="vn-stat-n" id="vn-favoritas">2</span><small>Favoritas</small></div>
+  </div>
+
+  <div id="vn-no-res" class="no-results" style="display:none">Nenhuma VN encontrada 🔍</div>
+
+  <div class="vn-grid" id="vn-grid">
+
+    <div class="vn-card" data-tags="sobrenatural horror romance" data-name="tsukihime">
+      <div class="vn-cover-wrap">
+        <img src="https://otomegatari.wordpress.com/wp-content/uploads/2014/08/tsukihime-600-310524.jpg" loading="lazy" onerror="this.src='https://placehold.co/200x280/06060f/ff3c8e?text=VN'">
+        <div class="vn-badge vn-badge-fav">★ Favorita</div>
+        <div class="vn-score">9.3</div>
+      </div>
+      <div class="vn-body">
+        <div class="vn-title">Tsukihime</div>
+        <div class="vn-tags-row"><span class="vn-tag">Sobrenatural</span><span class="vn-tag">Horror</span></div>
+        <div class="vn-meta">Type-Moon · 2000 · PC</div>
+        <div class="vn-status vn-done">✓ Completa</div>
+      </div>
+    </div>
+
+    <div class="vn-card" data-tags="suspense horror" data-name="danganronpa">
+      <div class="vn-cover-wrap">
+        <img src="https://static.wikia.nocookie.net/danganronpa/images/1/12/Danganronpa_Visual_Fanbook_%28Front_Cover%29.png/revision/latest?cb=20180126171146" loading="lazy" onerror="this.src='https://placehold.co/200x280/06060f/ff3c8e?text=VN'">
+        <div class="vn-badge vn-badge-fav">★ Favorita</div>
+        <div class="vn-score">9.1</div>
+      </div>
+      <div class="vn-body">
+        <div class="vn-title">Danganronpa</div>
+        <div class="vn-tags-row"><span class="vn-tag">Suspense</span><span class="vn-tag">Horror</span></div>
+        <div class="vn-meta">Spike Chunsoft · 2010 · PSP</div>
+        <div class="vn-status vn-done">✓ Completa</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="vn-footer-quote">
+    <span class="vn-fq-line"></span>
+    <span class="vn-fq-text">「 Toda escolha tem um peso. 」</span>
+    <span class="vn-fq-line"></span>
+  </div>
+
 </div>
 </div>
 

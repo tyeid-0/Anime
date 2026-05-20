@@ -9,11 +9,9 @@
 </head>
 <body>
 
-<!-- Fundos decorativos -->
 <div class="gbg"></div>
 <div class="ggrid"></div>
 
-<!-- ══════════════════ HEADER ══════════════════ -->
 <header>
   <div class="hrow1">
     <button class="hamburger" id="hamburger-btn" onclick="toggleDrawer()" aria-label="Menu">
@@ -26,7 +24,6 @@
   </div>
 </header>
 
-<!-- ══════════════════ DRAWER ══════════════════ -->
 <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
 
 <div class="drawer" id="drawer">
@@ -34,67 +31,38 @@
     <div class="drawer-logo">📺 TODDY</div>
     <button class="drawer-close" onclick="closeDrawer()">✕</button>
   </div>
-
   <div class="drawer-nav">
     <div class="drawer-section-label">Navegação</div>
-    <button class="drawer-item" onclick="navFromDrawer('assistindo','Assistindo')">
-      <span class="drawer-ico">▶️</span><span>Assistindo</span>
-    </button>
-    <button class="drawer-item" onclick="navFromDrawer('top','Top 30')">
-      <span class="drawer-ico">🌟</span><span>Top 30</span>
-    </button>
-    <button class="drawer-item" onclick="navFromDrawer('generos','Gêneros')">
-      <span class="drawer-ico">🎭</span><span>Gêneros</span>
-    </button>
-    <button class="drawer-item" onclick="navFromDrawer('favchars','Personagens')">
-      <span class="drawer-ico">❤️</span><span>Personagens</span>
-    </button>
-
-    <button class="drawer-item" onclick="navFromDrawer('primeiros','Primeiros Animes')">
-      <span class="drawer-ico">🌱</span><span>Primeiros Animes</span>
-    </button>
-    <button class="drawer-item" onclick="navFromDrawer('musicas','Músicas')">
-      <span class="drawer-ico">🎵</span><span>Músicas</span>
-    </button>
-    <button class="drawer-item" onclick="navFromDrawer('marcos','Marcos')">
-      <span class="drawer-ico">🏆</span><span>Marcos</span>
-    </button>
-    <button class="drawer-item" onclick="navFromDrawer('gacha','Gacha')">
-      <span class="drawer-ico">🎮</span><span>Gacha</span>
-    </button>
-    <button class="drawer-item" onclick="navFromDrawer('vn','Visual Novel')">
-      <span class="drawer-ico">📖</span><span>Visual Novel</span>
-    </button>
+    <button class="drawer-item" onclick="navFromDrawer('assistindo','Assistindo')"><span class="drawer-ico">▶️</span><span>Assistindo</span></button>
+    <button class="drawer-item" onclick="navFromDrawer('top','Top 30')"><span class="drawer-ico">🌟</span><span>Top 30</span></button>
+    <button class="drawer-item" onclick="navFromDrawer('generos','Gêneros')"><span class="drawer-ico">🎭</span><span>Gêneros</span></button>
+    <button class="drawer-item" onclick="navFromDrawer('favchars','Personagens')"><span class="drawer-ico">❤️</span><span>Personagens</span></button>
+    <button class="drawer-item" onclick="navFromDrawer('primeiros','Primeiros Animes')"><span class="drawer-ico">🌱</span><span>Primeiros Animes</span></button>
+    <button class="drawer-item" onclick="navFromDrawer('musicas','Músicas')"><span class="drawer-ico">🎵</span><span>Músicas</span></button>
+    <button class="drawer-item" onclick="navFromDrawer('marcos','Marcos')"><span class="drawer-ico">🏆</span><span>Marcos</span></button>
+    <button class="drawer-item" onclick="navFromDrawer('gacha','Gacha')"><span class="drawer-ico">🎮</span><span>Gacha</span></button>
+    <button class="drawer-item" onclick="navFromDrawer('vn','Visual Novel')"><span class="drawer-ico">📖</span><span>Visual Novel</span></button>
   </div>
-
   <div class="drawer-footer">
-    <a href="https://myanimelist.net/profile/XxT0DDyxX" target="_blank" class="drawer-mal-link">
-      MAL: XxT0DDyxX ↗
-    </a>
+    <a href="https://myanimelist.net/profile/XxT0DDyxX" target="_blank" class="drawer-mal-link">MAL: XxT0DDyxX ↗</a>
   </div>
 </div>
 
-<!-- ══════════════════ BOTTOM NAV ══════════════════ -->
 <nav class="bnav">
   <button class="bnav-item on" onclick="navTo('assistindo',this)" data-label="Assistindo">
-    <span class="bnav-ico">▶️</span>
-    <span class="bnav-lbl">MAL</span>
+    <span class="bnav-ico">▶️</span><span class="bnav-lbl">MAL</span>
   </button>
   <button class="bnav-item" onclick="navTo('top',this)" data-label="Top 30">
-    <span class="bnav-ico">🌟</span>
-    <span class="bnav-lbl">Top 30</span>
+    <span class="bnav-ico">🌟</span><span class="bnav-lbl">Top 30</span>
   </button>
   <button class="bnav-item" onclick="navTo('generos',this)" data-label="Gêneros">
-    <span class="bnav-ico">🎭</span>
-    <span class="bnav-lbl">Gêneros</span>
+    <span class="bnav-ico">🎭</span><span class="bnav-lbl">Gêneros</span>
   </button>
   <button class="bnav-item" onclick="navTo('favchars',this)" data-label="Personagens">
-    <span class="bnav-ico">❤️</span>
-    <span class="bnav-lbl">Chars</span>
+    <span class="bnav-ico">❤️</span><span class="bnav-lbl">Chars</span>
   </button>
 </nav>
 
-<!-- Overlay + Popup "Mais" -->
 <div class="more-overlay" id="more-overlay" onclick="closeMore()"></div>
 <div class="more-popup" id="more-popup">
   <div class="more-popup-title">Mais páginas</div>
@@ -105,13 +73,10 @@
   <button class="more-item" onclick="navTo('vn',null)">📖 Visual Novel</button>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     MAIN CONTENT
-══════════════════════════════════════════════ -->
 <main>
 
-<!-- ══ ASSISTINDO (aba inicial) ══ -->
-<div class="tab on" id="tab-assistindo" style="display:block">
+<!-- ASSISTINDO -->
+<div class="tab on" id="tab-assistindo">
 <div class="sec">
   <div class="sec-hd">
     <div class="sec-n">08</div>
@@ -122,7 +87,6 @@
     <div class="sec-line"></div>
   </div>
 
-  <!-- Resumo do perfil MAL -->
   <div id="mal-overview" class="mal-overview" style="display:none">
     <div class="mal-ov-header">
       <img id="mal-avatar" src="" alt="avatar" class="mal-avatar">
@@ -133,14 +97,14 @@
       <a href="https://myanimelist.net/profile/XxT0DDyxX" target="_blank" class="mal-link">Ver perfil ↗</a>
     </div>
     <div class="mal-ov-grid">
-      <div class="mal-ov-card green">  <span id="ov-watching">—</span>  <small>Assistindo</small></div>
-      <div class="mal-ov-card blue">   <span id="ov-completed">—</span> <small>Completos</small></div>
-      <div class="mal-ov-card yellow"> <span id="ov-hold">—</span>      <small>Em espera</small></div>
-      <div class="mal-ov-card red">    <span id="ov-dropped">—</span>   <small>Dropados</small></div>
-      <div class="mal-ov-card gray">   <span id="ov-ptw">—</span>       <small>Planejo ver</small></div>
-      <div class="mal-ov-card gold">   <span id="ov-score">—</span>     <small>Score médio</small></div>
-      <div class="mal-ov-card cyan">   <span id="ov-eps">—</span>       <small>Eps totais</small></div>
-      <div class="mal-ov-card purple"> <span id="ov-days">—</span>      <small>Dias assistidos</small></div>
+      <div class="mal-ov-card green"><span id="ov-watching">—</span><small>Assistindo</small></div>
+      <div class="mal-ov-card blue"><span id="ov-completed">—</span><small>Completos</small></div>
+      <div class="mal-ov-card yellow"><span id="ov-hold">—</span><small>Em espera</small></div>
+      <div class="mal-ov-card red"><span id="ov-dropped">—</span><small>Dropados</small></div>
+      <div class="mal-ov-card gray"><span id="ov-ptw">—</span><small>Planejo ver</small></div>
+      <div class="mal-ov-card gold"><span id="ov-score">—</span><small>Score médio</small></div>
+      <div class="mal-ov-card cyan"><span id="ov-eps">—</span><small>Eps totais</small></div>
+      <div class="mal-ov-card purple"><span id="ov-days">—</span><small>Dias assistidos</small></div>
     </div>
     <div class="mal-ov-bar-wrap">
       <div class="mal-ov-bar" id="ov-bar"></div>
@@ -154,21 +118,18 @@
     </div>
   </div>
 
-  <div id="mal-ov-loading" class="watch-loading" style="padding:32px 0">
+  <div id="mal-ov-loading" class="watch-loading">
     <div class="wl-spinner"></div>
     <p>Carregando perfil MAL…</p>
   </div>
 
   <div class="mal-section-label">▶ Em andamento agora</div>
 
-  <!-- Toolbar -->
   <div class="watch-toolbar">
     <div class="search-bar" style="flex:1;margin-bottom:0">
       <span class="search-ico">🔍</span>
-      <input id="w-srch" type="text" placeholder="Buscar na lista..."
-             oninput="filterWatch(this.value)">
-      <button class="search-clr"
-              onclick="document.getElementById('w-srch').value='';filterWatch('')">✕</button>
+      <input id="w-srch" type="text" placeholder="Buscar na lista..." oninput="filterWatch(this.value)">
+      <button class="search-clr" onclick="document.getElementById('w-srch').value='';filterWatch('')">✕</button>
     </div>
     <select id="w-sort" class="w-select" onchange="sortWatch(this.value)">
       <option value="default">Ordem MAL</option>
@@ -180,32 +141,26 @@
     <button class="btn-cy watch-refresh" onclick="loadWatching(true)">↺ Atualizar</button>
   </div>
 
-  <!-- Stats rápidos -->
   <div id="w-stats" class="watch-stats" style="display:none">
     <div class="ws-item"><span id="ws-total">—</span><small>Assistindo</small></div>
     <div class="ws-item"><span id="ws-eps">—</span><small>Eps vistos</small></div>
     <div class="ws-item"><span id="ws-avg">—</span><small>Score médio</small></div>
   </div>
 
-  <!-- Últimos assistidos -->
-  <div id="w-recent" style="display:none;margin-bottom:32px">
+  <div id="w-recent" style="display:none">
     <div class="rc-label">🕐 Últimos assistidos</div>
     <div id="w-recent-cards" class="rc-wrap"></div>
   </div>
 
-  <!-- Estados de carregamento -->
   <div id="w-loading" class="watch-loading">
     <div class="wl-spinner"></div>
     <p>Buscando lista no MyAnimeList…</p>
   </div>
   <div id="w-error" class="watch-error" style="display:none">
     <p>⚠️ Não foi possível carregar a lista.</p>
-    <button class="btn-cy" onclick="loadWatching(true)" style="margin-top:10px;padding:8px 18px">
-      Tentar novamente
-    </button>
+    <button class="btn-cy" onclick="loadWatching(true)">Tentar novamente</button>
   </div>
 
-  <!-- Tabela -->
   <div id="w-table-wrap" style="display:none">
     <table class="wtable" id="w-table">
       <thead>
@@ -223,23 +178,18 @@
   </div>
   <div id="w-empty" class="no-results" style="display:none">Nenhum anime encontrado 🔍</div>
 
-  <!-- Top Scores -->
   <div id="top-scores-wrap" style="display:none;margin-top:48px">
     <div class="mal-section-label">🏆 Seus melhores avaliados</div>
     <div id="top-scores-grid" class="top-grid"></div>
     <div style="text-align:center;margin-top:18px">
-      <button class="btn-cy" id="top-show-more" onclick="topShowMore()"
-              style="padding:10px 28px;font-size:.58rem;letter-spacing:2px">
-        Ver mais
-      </button>
+      <button class="btn-cy" id="top-show-more" onclick="topShowMore()">Ver mais</button>
     </div>
   </div>
-  <div id="top-loading" class="watch-loading" style="padding:32px 0;display:none">
+  <div id="top-loading" class="watch-loading" style="display:none">
     <div class="wl-spinner"></div>
     <p>Carregando top scores…</p>
   </div>
 
-  <!-- Gráfico de scores -->
   <div id="score-chart-wrap" style="display:none;margin-top:52px">
     <div class="mal-section-label">📈 Distribuição dos seus scores</div>
     <div class="chart-box">
@@ -252,7 +202,6 @@
     </div>
   </div>
 
-  <!-- Anime Surpresa -->
   <div style="margin-top:52px">
     <div class="mal-section-label">🔀 Anime surpresa</div>
     <div class="surprise-wrap">
@@ -275,11 +224,10 @@
       </div>
     </div>
   </div>
-
 </div>
 </div>
 
-<!-- ══ PRIMEIROS ANIMES ══ -->
+<!-- PRIMEIROS ANIMES -->
 <div class="tab" id="tab-primeiros">
 <div class="sec">
   <div class="sec-hd">
@@ -304,7 +252,7 @@
 </div>
 </div>
 
-<!-- ══ GÊNEROS ══ -->
+<!-- GÊNEROS -->
 <div class="tab" id="tab-generos">
 <div class="sec">
   <div class="sec-hd">
@@ -343,8 +291,6 @@
   <div id="no-res" class="no-results">Nenhum anime encontrado 🔍</div>
 
   <div id="gbox">
-
-    <!-- Drama -->
     <div class="gblock" data-g="drama romance">
       <div class="gblock-title">🎭 Drama</div>
       <div class="ag">
@@ -360,7 +306,6 @@
       </div>
     </div>
 
-    <!-- Romance -->
     <div class="gblock" data-g="romance">
       <div class="gblock-title">💖 Romance</div>
       <div class="ag">
@@ -369,7 +314,6 @@
       </div>
     </div>
 
-    <!-- Ação -->
     <div class="gblock" data-g="acao">
       <div class="gblock-title">🔥 Ação</div>
       <div class="ag">
@@ -384,7 +328,6 @@
       </div>
     </div>
 
-    <!-- Comédia -->
     <div class="gblock" data-g="comedia">
       <div class="gblock-title">😂 Comédia</div>
       <div class="ag">
@@ -395,7 +338,6 @@
       </div>
     </div>
 
-    <!-- Fantasia -->
     <div class="gblock" data-g="fantasia">
       <div class="gblock-title">🪄 Fantasia</div>
       <div class="ag">
@@ -409,7 +351,6 @@
       </div>
     </div>
 
-    <!-- Sci-Fi -->
     <div class="gblock" data-g="scifi">
       <div class="gblock-title">🚀 Sci-Fi</div>
       <div class="ag">
@@ -421,7 +362,6 @@
       </div>
     </div>
 
-    <!-- Terror -->
     <div class="gblock" data-g="terror">
       <div class="gblock-title">👁️ Terror / Horror</div>
       <div class="ag">
@@ -431,7 +371,6 @@
       </div>
     </div>
 
-    <!-- Psicológico -->
     <div class="gblock" data-g="psicologico">
       <div class="gblock-title">🧠 Psicológico</div>
       <div class="ag">
@@ -443,7 +382,6 @@
       </div>
     </div>
 
-    <!-- Isekai -->
     <div class="gblock" data-g="isekai">
       <div class="gblock-title">🌀 Isekai</div>
       <div class="ag">
@@ -456,7 +394,6 @@
       </div>
     </div>
 
-    <!-- Gore -->
     <div class="gblock" data-g="gore">
       <div class="gblock-title">🩸 Gore</div>
       <div class="ag">
@@ -466,7 +403,6 @@
       </div>
     </div>
 
-    <!-- Mahou -->
     <div class="gblock" data-g="mahou">
       <div class="gblock-title">🧙‍♀️ Mahou Shoujo</div>
       <div class="ag">
@@ -474,7 +410,6 @@
       </div>
     </div>
 
-    <!-- Dark -->
     <div class="gblock" data-g="dark">
       <div class="gblock-title">🌑 Dark Fantasy</div>
       <div class="ag">
@@ -484,7 +419,6 @@
       </div>
     </div>
 
-    <!-- Survival -->
     <div class="gblock" data-g="survival">
       <div class="gblock-title">☠️ Survival</div>
       <div class="ag">
@@ -492,7 +426,6 @@
       </div>
     </div>
 
-    <!-- Musical -->
     <div class="gblock" data-g="musical">
       <div class="gblock-title">🎸 Musical</div>
       <div class="ag">
@@ -503,7 +436,6 @@
       </div>
     </div>
 
-    <!-- Outros -->
     <div class="gblock" data-g="misterio aventura escolar militar historico mecha sobrenatural esporte harem slice">
       <div class="gblock-title">🔍 Outros Gêneros</div>
       <div class="ag">
@@ -516,12 +448,11 @@
         <div class="ac" data-name="wolf children slice of life" data-tags="slice drama fantasia"><img src="https://m.media-amazon.com/images/I/91zAQQYsRGL._AC_UF894,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Slice of Life</p><p class="ac-name">Wolf Children</p></div></div>
       </div>
     </div>
-
-  </div><!-- /gbox -->
+  </div>
 </div>
 </div>
 
-<!-- ══ TOP 30 ══ -->
+<!-- TOP 30 -->
 <div class="tab" id="tab-top">
 <div class="sec">
   <div class="sec-hd">
@@ -533,12 +464,8 @@
     <div class="sec-line"></div>
   </div>
 
-  <!-- Pódio Top 3 -->
-  <div class="podium-wrap" id="podium">
-    <!-- gerado pelo JS -->
-  </div>
+  <div class="podium-wrap" id="podium"></div>
 
-  <!-- Filtro por gênero -->
   <div class="top-filter-bar">
     <div class="top-filter-label">Filtrar por gênero</div>
     <div class="chips" id="top-chips" style="margin-bottom:0">
@@ -563,7 +490,7 @@
 </div>
 </div>
 
-<!-- ══ PERSONAGENS ══ -->
+<!-- PERSONAGENS -->
 <div class="tab" id="tab-favchars">
 <div class="sec">
   <div class="sec-hd">
@@ -577,166 +504,49 @@
 
   <div class="gblock-title" style="margin-bottom:14px">♂ Masculinos</div>
   <div class="fav-row">
-    <div class="fc m" data-quote="「 Não preciso de motivo para lutar. Eu apenas avanço. 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://i.pinimg.com/474x/80/d7/58/80d7586c842b53f343f00991178110a7.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Thorfinn</p><p class="fc-from">Vinland Saga</p></div>
-      <div class="fc-quote">「 Não preciso de motivo para lutar. Eu apenas avanço. 」</div>
-    </div>
-    <div class="fc m" data-quote="「 Eu sou um mago louco. El. Psy. Kongroo. 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://i.redd.it/zbxwqtes5z911.png" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Okabe Rintarou</p><p class="fc-from">Steins;Gate</p></div>
-      <div class="fc-quote">「 El. Psy. Kongroo. 」</div>
-    </div>
-    <div class="fc m" data-quote="「 Não preciso que o mundo mude. Só quero que as pessoas ao meu redor sejam felizes. 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://preview.redd.it/tomoya-is-real-v0-y992gciceabe1.jpeg?auto=webp&s=7aa16df88b4d8674c77eaf98d5dde991780d8729" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Tomoya Okazaki</p><p class="fc-from">Clannad</p></div>
-      <div class="fc-quote">「 Só quero que as pessoas ao meu redor sejam felizes. 」</div>
-    </div>
-    <div class="fc m" data-quote="「 Quem diabos você acha que eu sou?! 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://static.wikia.nocookie.net/gurennlagann/images/5/56/Simon_stepping_out_og_Gurren_Lagann.jpg/revision/latest/scale-to-width-down/985?cb=20180302005345" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Simon</p><p class="fc-from">Gurren Lagann</p></div>
-      <div class="fc-quote">「 Quem diabos você acha que eu sou?! 」</div>
-    </div>
-    <div class="fc m" data-quote="「 Um homem que abandona amigos é pior que lixo! 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://static.wikitide.net/deathbattlewiki/1/1f/Portrait.edwardelric.png" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Edward Elric</p><p class="fc-from">FMA: Brotherhood</p></div>
-      <div class="fc-quote">「 Um homem que abandona amigos é pior que lixo! 」</div>
-    </div>
-    <div class="fc m" data-quote="「 Não vou desistir. Estou salvo por minhas espadas. 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkdU2AVfjALZmkr4BFVjSdec5YUBZHJZuhFA&s" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Emiya Shirou</p><p class="fc-from">Fate/Stay Night</p></div>
-      <div class="fc-quote">「 Meu corpo é feito de espadas. 」</div>
-    </div>
-    <div class="fc m" data-quote="「 Eu não preciso de olhos para enxergar o que é importante. 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://preview.redd.it/hyakkimaru-dororo-episode-4-v0-rmgm0bfj2uz21.jpg?width=640&crop=smart&auto=webp&s=c6ddad98631b28f6fdfe963d0927c030c1395283" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Hyakkimaru</p><p class="fc-from">Dororo</p></div>
-      <div class="fc-quote">「 Eu vou recuperar tudo o que é meu. 」</div>
-    </div>
-    <div class="fc m" data-quote="「 Tudo em nome da bênção das crianças. 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://static.wikia.nocookie.net/madeinabyss/images/e/ea/Bondrewd_Manga_Square.jpg/revision/latest/scale-to-width/360?cb=20250605234245" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Bondrewd</p><p class="fc-from">Made in Abyss</p></div>
-      <div class="fc-quote">「 Tudo em nome da bênção das crianças. 」</div>
-    </div>
-    <div class="fc m" data-quote="「 Eu vou salvar todos. Sem exceção. 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://preview.redd.it/question-about-gluttony-if-route-v0-45pp0xjaakmf1.jpeg?width=640&crop=smart&auto=webp&s=cbbfe5a9e4e7961700b04ce2076d90002c9b5dc0" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Subaru Gula</p><p class="fc-from">Re:Zero</p></div>
-      <div class="fc-quote">「 Eu vou salvar todos. Sem exceção. 」</div>
-    </div>
-    <div class="fc m" data-quote="「 Eu posso ultrapassar qualquer um! 」">
-      <div class="fc-badge">♂</div>
-      <img src="https://myanimelist.net/images/characters/15/72546.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Goku</p><p class="fc-from">Dragon Ball</p></div>
-      <div class="fc-quote">「 Eu posso ultrapassar qualquer um! 」</div>
-    </div>
+    <div class="fc m" data-quote="「 Não preciso de motivo para lutar. Eu apenas avanço. 」"><div class="fc-badge">♂</div><img src="https://i.pinimg.com/474x/80/d7/58/80d7586c842b53f343f00991178110a7.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Thorfinn</p><p class="fc-from">Vinland Saga</p></div><div class="fc-quote">「 Não preciso de motivo para lutar. Eu apenas avanço. 」</div></div>
+    <div class="fc m" data-quote="「 El. Psy. Kongroo. 」"><div class="fc-badge">♂</div><img src="https://i.redd.it/zbxwqtes5z911.png" loading="lazy"><div class="fc-info"><p class="fc-name">Okabe Rintarou</p><p class="fc-from">Steins;Gate</p></div><div class="fc-quote">「 El. Psy. Kongroo. 」</div></div>
+    <div class="fc m" data-quote="「 Só quero que as pessoas ao meu redor sejam felizes. 」"><div class="fc-badge">♂</div><img src="https://preview.redd.it/tomoya-is-real-v0-y992gciceabe1.jpeg?auto=webp&s=7aa16df88b4d8674c77eaf98d5dde991780d8729" loading="lazy"><div class="fc-info"><p class="fc-name">Tomoya Okazaki</p><p class="fc-from">Clannad</p></div><div class="fc-quote">「 Só quero que as pessoas ao meu redor sejam felizes. 」</div></div>
+    <div class="fc m" data-quote="「 Quem diabos você acha que eu sou?! 」"><div class="fc-badge">♂</div><img src="https://static.wikia.nocookie.net/gurennlagann/images/5/56/Simon_stepping_out_og_Gurren_Lagann.jpg/revision/latest/scale-to-width-down/985?cb=20180302005345" loading="lazy"><div class="fc-info"><p class="fc-name">Simon</p><p class="fc-from">Gurren Lagann</p></div><div class="fc-quote">「 Quem diabos você acha que eu sou?! 」</div></div>
+    <div class="fc m" data-quote="「 Um homem que abandona amigos é pior que lixo! 」"><div class="fc-badge">♂</div><img src="https://static.wikitide.net/deathbattlewiki/1/1f/Portrait.edwardelric.png" loading="lazy"><div class="fc-info"><p class="fc-name">Edward Elric</p><p class="fc-from">FMA: Brotherhood</p></div><div class="fc-quote">「 Um homem que abandona amigos é pior que lixo! 」</div></div>
+    <div class="fc m" data-quote="「 Meu corpo é feito de espadas. 」"><div class="fc-badge">♂</div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkdU2AVfjALZmkr4BFVjSdec5YUBZHJZuhFA&s" loading="lazy"><div class="fc-info"><p class="fc-name">Emiya Shirou</p><p class="fc-from">Fate/Stay Night</p></div><div class="fc-quote">「 Meu corpo é feito de espadas. 」</div></div>
+    <div class="fc m" data-quote="「 Eu vou recuperar tudo o que é meu. 」"><div class="fc-badge">♂</div><img src="https://preview.redd.it/hyakkimaru-dororo-episode-4-v0-rmgm0bfj2uz21.jpg?width=640&crop=smart&auto=webp&s=c6ddad98631b28f6fdfe963d0927c030c1395283" loading="lazy"><div class="fc-info"><p class="fc-name">Hyakkimaru</p><p class="fc-from">Dororo</p></div><div class="fc-quote">「 Eu vou recuperar tudo o que é meu. 」</div></div>
+    <div class="fc m" data-quote="「 Tudo em nome da bênção das crianças. 」"><div class="fc-badge">♂</div><img src="https://static.wikia.nocookie.net/madeinabyss/images/e/ea/Bondrewd_Manga_Square.jpg/revision/latest/scale-to-width/360?cb=20250605234245" loading="lazy"><div class="fc-info"><p class="fc-name">Bondrewd</p><p class="fc-from">Made in Abyss</p></div><div class="fc-quote">「 Tudo em nome da bênção das crianças. 」</div></div>
+    <div class="fc m" data-quote="「 Eu vou salvar todos. Sem exceção. 」"><div class="fc-badge">♂</div><img src="https://preview.redd.it/question-about-gluttony-if-route-v0-45pp0xjaakmf1.jpeg?width=640&crop=smart&auto=webp&s=cbbfe5a9e4e7961700b04ce2076d90002c9b5dc0" loading="lazy"><div class="fc-info"><p class="fc-name">Subaru Gula</p><p class="fc-from">Re:Zero</p></div><div class="fc-quote">「 Eu vou salvar todos. Sem exceção. 」</div></div>
+    <div class="fc m" data-quote="「 Eu posso ultrapassar qualquer um! 」"><div class="fc-badge">♂</div><img src="https://myanimelist.net/images/characters/15/72546.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Goku</p><p class="fc-from">Dragon Ball</p></div><div class="fc-quote">「 Eu posso ultrapassar qualquer um! 」</div></div>
   </div>
 
   <div class="gblock-title" style="margin:40px 0 14px">♀ Femininas</div>
   <div class="fav-row">
-    <div class="fc f" data-quote="「 Por favor, use-me como seu escudo. 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://www.animeunited.com.br/oomtumtu/2017/12/rem-re-zero.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Rem</p><p class="fc-from">Re:Zero</p></div>
-      <div class="fc-quote">「 Por favor, use-me como seu escudo. 」</div>
-    </div>
-    <div class="fc f" data-quote="「 Correr é minha razão de existir. 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://i.ytimg.com/vi/KpBYd26Cgl0/hq720.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Oguri Cap</p><p class="fc-from">Cinderella Gray</p></div>
-      <div class="fc-quote">「 Correr é minha razão de existir. 」</div>
-    </div>
-    <div class="fc f" data-quote="「 S-se eu tocar na guitarra aqui... vai ficar tudo bem? 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://i0.wp.com/geekpopnews.com.br/wp-content/uploads/2023/07/Bocchi-the-rock-4.jpg?resize=800%2C600&ssl=1" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Bocchi</p><p class="fc-from">Bocchi the Rock!</p></div>
-      <div class="fc-quote">「 S-se eu tocar aqui... vai ficar tudo bem? 」</div>
-    </div>
-    <div class="fc f" data-quote="「 Não vou recuar. Nunca. 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://i.pinimg.com/736x/b7/f6/50/b7f650013f1681692374f028c3464157.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Tomoyo Sakagami</p><p class="fc-from">Clannad</p></div>
-      <div class="fc-quote">「 Não vou recuar. Nunca. 」</div>
-    </div>
-    <div class="fc f" data-quote="「 Sou uma deusa sábia, porém curiosa sobre o mundo humano. 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://a.storyblok.com/f/178900/1000x563/ed655ce2fb/spice-and-wolf-2024-screen1.jpg/m/filters:quality(95)format(webp)" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Holo</p><p class="fc-from">Ookami to Koushinryou</p></div>
-      <div class="fc-quote">「 Sou Holo, a Sábia de Yoitsu. 」</div>
-    </div>
-    <div class="fc f" data-quote="「 Eu bebo sangue. Mas não é o que você está pensando. 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://i.pinimg.com/736x/b5/76/12/b576129e7f27a56f33878b544c1a20a7.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Arcueid</p><p class="fc-from">Tsukihime</p></div>
-      <div class="fc-quote">「 Eu não preciso dormir — mas gosto. 」</div>
-    </div>
-    <div class="fc f" data-quote="「 Que engraçado... eu me sinto mais eu mesma quando estou com você. 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://myanimelist.net/images/characters/12/172239.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Inaba Himeko</p><p class="fc-from">Kokoro Connect</p></div>
-      <div class="fc-quote">「 Me sinto mais eu mesma quando estou com você. 」</div>
-    </div>
-    <div class="fc f" data-quote="「 Mesmo que seja apenas um pouco, quero ser útil para você. 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://myanimelist.net/images/characters/14/294277.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Matou Sakura</p><p class="fc-from">Fate/Stay Night</p></div>
-      <div class="fc-quote">「 Quero ser útil para você. 」</div>
-    </div>
-    <div class="fc f" data-quote="「 Não sou uma princesa frágil. Sou uma guerreira. 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://myanimelist.net/images/characters/13/325018.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Yona</p><p class="fc-from">Akatsuki no Yona</p></div>
-      <div class="fc-quote">「 Não sou mais a princesa frágil que era. 」</div>
-    </div>
-    <div class="fc f" data-quote="「 O conhecimento é a coisa mais sagrada do universo. 」">
-      <div class="fc-badge">♀</div>
-      <img src="https://myanimelist.net/images/characters/12/248121.jpg" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Jibril</p><p class="fc-from">No Game No Life</p></div>
-      <div class="fc-quote">「 O conhecimento é a coisa mais sagrada do universo. 」</div>
-    </div>
+    <div class="fc f" data-quote="「 Por favor, use-me como seu escudo. 」"><div class="fc-badge">♀</div><img src="https://www.animeunited.com.br/oomtumtu/2017/12/rem-re-zero.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Rem</p><p class="fc-from">Re:Zero</p></div><div class="fc-quote">「 Por favor, use-me como seu escudo. 」</div></div>
+    <div class="fc f" data-quote="「 Correr é minha razão de existir. 」"><div class="fc-badge">♀</div><img src="https://i.ytimg.com/vi/KpBYd26Cgl0/hq720.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Oguri Cap</p><p class="fc-from">Cinderella Gray</p></div><div class="fc-quote">「 Correr é minha razão de existir. 」</div></div>
+    <div class="fc f" data-quote="「 S-se eu tocar aqui... vai ficar tudo bem? 」"><div class="fc-badge">♀</div><img src="https://i0.wp.com/geekpopnews.com.br/wp-content/uploads/2023/07/Bocchi-the-rock-4.jpg?resize=800%2C600&ssl=1" loading="lazy"><div class="fc-info"><p class="fc-name">Bocchi</p><p class="fc-from">Bocchi the Rock!</p></div><div class="fc-quote">「 S-se eu tocar aqui... vai ficar tudo bem? 」</div></div>
+    <div class="fc f" data-quote="「 Não vou recuar. Nunca. 」"><div class="fc-badge">♀</div><img src="https://i.pinimg.com/736x/b7/f6/50/b7f650013f1681692374f028c3464157.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Tomoyo Sakagami</p><p class="fc-from">Clannad</p></div><div class="fc-quote">「 Não vou recuar. Nunca. 」</div></div>
+    <div class="fc f" data-quote="「 Sou Holo, a Sábia de Yoitsu. 」"><div class="fc-badge">♀</div><img src="https://a.storyblok.com/f/178900/1000x563/ed655ce2fb/spice-and-wolf-2024-screen1.jpg/m/filters:quality(95)format(webp)" loading="lazy"><div class="fc-info"><p class="fc-name">Holo</p><p class="fc-from">Ookami to Koushinryou</p></div><div class="fc-quote">「 Sou Holo, a Sábia de Yoitsu. 」</div></div>
+    <div class="fc f" data-quote="「 Eu não preciso dormir — mas gosto. 」"><div class="fc-badge">♀</div><img src="https://i.pinimg.com/736x/b5/76/12/b576129e7f27a56f33878b544c1a20a7.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Arcueid</p><p class="fc-from">Tsukihime</p></div><div class="fc-quote">「 Eu não preciso dormir — mas gosto. 」</div></div>
+    <div class="fc f" data-quote="「 Me sinto mais eu mesma quando estou com você. 」"><div class="fc-badge">♀</div><img src="https://myanimelist.net/images/characters/12/172239.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Inaba Himeko</p><p class="fc-from">Kokoro Connect</p></div><div class="fc-quote">「 Me sinto mais eu mesma quando estou com você. 」</div></div>
+    <div class="fc f" data-quote="「 Quero ser útil para você. 」"><div class="fc-badge">♀</div><img src="https://myanimelist.net/images/characters/14/294277.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Matou Sakura</p><p class="fc-from">Fate/Stay Night</p></div><div class="fc-quote">「 Quero ser útil para você. 」</div></div>
+    <div class="fc f" data-quote="「 Não sou mais a princesa frágil que era. 」"><div class="fc-badge">♀</div><img src="https://myanimelist.net/images/characters/13/325018.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Yona</p><p class="fc-from">Akatsuki no Yona</p></div><div class="fc-quote">「 Não sou mais a princesa frágil que era. 」</div></div>
+    <div class="fc f" data-quote="「 O conhecimento é a coisa mais sagrada do universo. 」"><div class="fc-badge">♀</div><img src="https://myanimelist.net/images/characters/12/248121.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Jibril</p><p class="fc-from">No Game No Life</p></div><div class="fc-quote">「 O conhecimento é a coisa mais sagrada do universo. 」</div></div>
   </div>
 
-  <!-- ══ VILÕES / ANTAGONISTAS ══ -->
   <div class="viloes-sep">
     <span class="viloes-sep-line"></span>
     <span class="viloes-sep-txt">💀 ANTAGONISTAS</span>
     <span class="viloes-sep-line"></span>
   </div>
 
-  <div class="gblock-title" style="margin-bottom:6px;color:var(--pink)">
-    <span style="width:3px;height:14px;background:var(--pink);border-radius:1px;flex-shrink:0;display:inline-block"></span>
-    Vilões Favoritos
-  </div>
+  <div class="gblock-title" style="margin-bottom:6px;color:var(--pink)">Vilões Favoritos</div>
   <p style="font-size:.68rem;color:var(--muted);letter-spacing:1.5px;margin-bottom:20px;text-transform:uppercase">Os antagonistas que tornaram os animes inesquecíveis</p>
 
   <div class="fav-row">
-    <div class="fc vilao" data-quote="「 Tudo em nome do progresso da humanidade. A bênção das crianças. 」">
-      <div class="fc-badge vilao-badge">💀</div>
-      <div class="vilao-rank">S</div>
-      <img src="https://static.wikia.nocookie.net/madeinabyss/images/e/ea/Bondrewd_Manga_Square.jpg/revision/latest/scale-to-width/360?cb=20250605234245" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Bondrewd</p><p class="fc-from">Made in Abyss</p></div>
-      <div class="fc-quote">「 Tudo pela bênção das crianças. 」</div>
-    </div>
-    <div class="fc vilao" data-quote="「 Eu amo Reunion. Mas o Reunion de verdade já não existe mais. 」">
-      <div class="fc-badge vilao-badge">💀</div>
-      <div class="vilao-rank">S</div>
-      <img src="https://static.wikia.nocookie.net/mrfz/images/4/4b/Talulah_Attacks.png/revision/latest?cb=20210221123837" loading="lazy">
-      <div class="fc-info"><p class="fc-name">Talulah</p><p class="fc-from">Arknights</p></div>
-      <div class="fc-quote">「 O Reunion de verdade já não existe mais. 」</div>
-    </div>
-
+    <div class="fc vilao" data-quote="「 Tudo pela bênção das crianças. 」"><div class="fc-badge vilao-badge">💀</div><div class="vilao-rank">S</div><img src="https://static.wikia.nocookie.net/madeinabyss/images/e/ea/Bondrewd_Manga_Square.jpg/revision/latest/scale-to-width/360?cb=20250605234245" loading="lazy"><div class="fc-info"><p class="fc-name">Bondrewd</p><p class="fc-from">Made in Abyss</p></div><div class="fc-quote">「 Tudo pela bênção das crianças. 」</div></div>
+    <div class="fc vilao" data-quote="「 O Reunion de verdade já não existe mais. 」"><div class="fc-badge vilao-badge">💀</div><div class="vilao-rank">S</div><img src="https://static.wikia.nocookie.net/mrfz/images/4/4b/Talulah_Attacks.png/revision/latest?cb=20210221123837" loading="lazy"><div class="fc-info"><p class="fc-name">Talulah</p><p class="fc-from">Arknights</p></div><div class="fc-quote">「 O Reunion de verdade já não existe mais. 」</div></div>
   </div>
 </div>
 </div>
 
-<!-- ══ MÚSICAS ══ -->
+<!-- MÚSICAS -->
 <div class="tab" id="tab-musicas">
 <div class="sec">
   <div class="sec-hd">
@@ -767,7 +577,7 @@
 </div>
 </div>
 
-<!-- ══ MARCOS ══ -->
+<!-- MARCOS -->
 <div class="tab" id="tab-marcos">
 <div class="sec">
   <div class="sec-hd">
@@ -779,31 +589,13 @@
     <div class="sec-line"></div>
   </div>
 
-  <!-- ── STATS RÁPIDOS — sincronizados com MAL ── -->
   <div class="marcos-stats">
-    <div class="ms-card">
-      <span class="ms-ico">📺</span>
-      <div class="ms-val" id="ms-total">472</div>
-      <div class="ms-lbl">Animes completos</div>
-    </div>
-    <div class="ms-card">
-      <span class="ms-ico">📅</span>
-      <div class="ms-val" id="ms-anos">~6</div>
-      <div class="ms-lbl">Anos de jornada</div>
-    </div>
-    <div class="ms-card">
-      <span class="ms-ico">🎬</span>
-      <div class="ms-val" id="ms-eps">~8.024</div>
-      <div class="ms-lbl">Episódios estimados</div>
-    </div>
-    <div class="ms-card">
-      <span class="ms-ico">⏱️</span>
-      <div class="ms-val" id="ms-dias">~133</div>
-      <div class="ms-lbl">Dias assistidos</div>
-    </div>
+    <div class="ms-card"><span class="ms-ico">📺</span><div class="ms-val" id="ms-total">472</div><div class="ms-lbl">Animes completos</div></div>
+    <div class="ms-card"><span class="ms-ico">📅</span><div class="ms-val" id="ms-anos">~6</div><div class="ms-lbl">Anos de jornada</div></div>
+    <div class="ms-card"><span class="ms-ico">🎬</span><div class="ms-val" id="ms-eps">~8.024</div><div class="ms-lbl">Episódios estimados</div></div>
+    <div class="ms-card"><span class="ms-ico">⏱️</span><div class="ms-val" id="ms-dias">~133</div><div class="ms-lbl">Dias assistidos</div></div>
   </div>
 
-  <!-- ── PRÓXIMO MARCO ── -->
   <div class="prox-marco">
     <div class="pm-header">
       <span class="pm-tag">🏁 Próximo Marco</span>
@@ -819,23 +611,17 @@
         <div class="pm-falta">Faltam <strong id="pm-falta">28</strong> animes</div>
       </div>
       <div class="pm-bar-wrap">
-        <div class="pm-bar">
-          <div class="pm-fill" id="pm-fill" style="width:94.4%"></div>
-        </div>
+        <div class="pm-bar"><div class="pm-fill" id="pm-fill" style="width:94.4%"></div></div>
         <div class="pm-pct" id="pm-pct">94.4%</div>
       </div>
     </div>
   </div>
 
-  <!-- ── TIMELINE ── -->
   <div class="timeline-wrap">
     <div class="timeline-line"></div>
 
-    <!-- Marco #1 — esquerda -->
     <div class="tl-item tl-left tl-done">
-      <div class="tl-dot done">
-        <span>✓</span>
-      </div>
+      <div class="tl-dot done"><span>✓</span></div>
       <div class="tl-card">
         <img src="https://upload.wikimedia.org/wikipedia/pt/e/e2/Ponyo_p%C3%B4ster.png" loading="lazy" alt="Ponyo">
         <div class="tl-body">
@@ -848,11 +634,8 @@
       </div>
     </div>
 
-    <!-- Marco #100 — direita -->
     <div class="tl-item tl-right tl-done">
-      <div class="tl-dot done">
-        <span>✓</span>
-      </div>
+      <div class="tl-dot done"><span>✓</span></div>
       <div class="tl-card">
         <img src="https://m.media-amazon.com/images/M/MV5BMzcxMjBiNWMtNDBmYi00NmFlLWFlOTctZjlkMzExMWU0YTI5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy" alt="Nisekoi">
         <div class="tl-body">
@@ -865,11 +648,8 @@
       </div>
     </div>
 
-    <!-- Marco #200 — esquerda -->
     <div class="tl-item tl-left tl-done">
-      <div class="tl-dot done">
-        <span>✓</span>
-      </div>
+      <div class="tl-dot done"><span>✓</span></div>
       <div class="tl-card">
         <img src="https://m.media-amazon.com/images/I/91XjS5O83yL._AC_UF894,1000_QL80_.jpg" loading="lazy" alt="Shuffle!">
         <div class="tl-body">
@@ -882,11 +662,8 @@
       </div>
     </div>
 
-    <!-- Marco #300 — direita -->
     <div class="tl-item tl-right tl-done">
-      <div class="tl-dot done">
-        <span>✓</span>
-      </div>
+      <div class="tl-dot done"><span>✓</span></div>
       <div class="tl-card">
         <img src="https://cdn.myanimelist.net/images/anime/1223/96541.jpg" loading="lazy" alt="FMA Brotherhood">
         <div class="tl-body">
@@ -899,11 +676,8 @@
       </div>
     </div>
 
-    <!-- Marco #400 — esquerda -->
     <div class="tl-item tl-left tl-done">
-      <div class="tl-dot done gold-dot">
-        <span>★</span>
-      </div>
+      <div class="tl-dot done gold-dot"><span>★</span></div>
       <div class="tl-card tl-card-latest">
         <div class="tl-latest-badge">Último marco</div>
         <img src="https://myanimelist.net/images/anime/13/77662.jpg" loading="lazy" alt="Shoujo Tsubaki">
@@ -917,11 +691,8 @@
       </div>
     </div>
 
-    <!-- Marco #500 — direita — FUTURO -->
     <div class="tl-item tl-right tl-future">
-      <div class="tl-dot future">
-        <span>?</span>
-      </div>
+      <div class="tl-dot future"><span>?</span></div>
       <div class="tl-card tl-card-future">
         <div class="tl-future-ico">🏁</div>
         <div class="tl-body">
@@ -933,13 +704,11 @@
         </div>
       </div>
     </div>
-
-  </div><!-- /timeline-wrap -->
-
+  </div>
 </div>
 </div>
 
-<!-- ══ GACHA ══ -->
+<!-- GACHA -->
 <div class="tab" id="tab-gacha">
 <div class="sec">
   <div class="sec-hd">
@@ -959,7 +728,6 @@
     <div class="gc"><div class="gc-banner"><img src="https://preview.redd.it/chaos-zero-nightmare-has-released-and-begun-official-service-v0-xlzhc3p0fkwf1.png?width=1080&crop=smart&auto=webp&s=9dca1b41b9a4f9d900f416b9799adb594b29da48" loading="lazy"><div class="gc-overlay"><div class="gc-icon">⚔️</div><h3>CHAOS ZERO NIGHTMARE</h3><div class="gc-genre">Turn-based RPG</div></div></div><div class="gc-body"><p>Uma história sombria com escolhas ramificadas e ilustrações vibrantes.</p><div class="gc-tags"><span class="gt">Turn-based</span><span class="gt">Super Creative</span><span class="gt">Story</span></div></div></div>
   </div>
 
-  <!-- Personagens de Gacha -->
   <div class="sec-hd" style="margin-top:48px">
     <div class="sec-n">✦</div>
     <div>
@@ -996,11 +764,10 @@
     <div class="fc f"><div class="fc-badge">♀</div><img src="https://i.pinimg.com/736x/94/f2/86/94f28659767eb9c9cfb2d49fd28fa735.jpg" loading="lazy"><div class="fc-info"><p class="fc-name">Vivian</p><p class="fc-from">Zenless Zone Zero</p></div></div>
     <div class="fc f"><div class="fc-badge">♀</div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7XgsRTr1vVYGQn1Fjoxd5GqK8AxdMU_FZJg&s" loading="lazy"><div class="fc-info"><p class="fc-name">Anby</p><p class="fc-from">Zenless Zone Zero</p></div></div>
   </div>
-
 </div>
 </div>
 
-<!-- ══ VISUAL NOVEL ══ -->
+<!-- VISUAL NOVEL -->
 <div class="tab" id="tab-vn">
 <div class="sec">
   <div class="sec-hd">
@@ -1039,44 +806,16 @@
 
   <div class="vn-grid" id="vn-grid">
     <div class="vn-card" data-tags="sobrenatural horror romance" data-name="tsukihime">
-      <div class="vn-cover-wrap">
-        <img src="https://otomegatari.wordpress.com/wp-content/uploads/2014/08/tsukihime-600-310524.jpg" loading="lazy">
-        <div class="vn-badge vn-badge-fav">★ Favorita</div>
-        <div class="vn-score">9.3</div>
-      </div>
-      <div class="vn-body">
-        <div class="vn-title">Tsukihime</div>
-        <div class="vn-tags-row"><span class="vn-tag">Sobrenatural</span><span class="vn-tag">Horror</span></div>
-        <div class="vn-meta">Type-Moon · 2000 · PC</div>
-        <div class="vn-status vn-done">✓ Completa</div>
-      </div>
+      <div class="vn-cover-wrap"><img src="https://otomegatari.wordpress.com/wp-content/uploads/2014/08/tsukihime-600-310524.jpg" loading="lazy"><div class="vn-badge vn-badge-fav">★ Favorita</div><div class="vn-score">9.3</div></div>
+      <div class="vn-body"><div class="vn-title">Tsukihime</div><div class="vn-tags-row"><span class="vn-tag">Sobrenatural</span><span class="vn-tag">Horror</span></div><div class="vn-meta">Type-Moon · 2000 · PC</div><div class="vn-status vn-done">✓ Completa</div></div>
     </div>
-
     <div class="vn-card" data-tags="romance drama" data-name="clannad">
-      <div class="vn-cover-wrap">
-        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/324160/header.jpg?t=1770337441" loading="lazy">
-        <div class="vn-badge vn-badge-fav">★ Favorita</div>
-        <div class="vn-score">9.8</div>
-      </div>
-      <div class="vn-body">
-        <div class="vn-title">Clannad</div>
-        <div class="vn-tags-row"><span class="vn-tag">Romance</span><span class="vn-tag">Drama</span></div>
-        <div class="vn-meta">VisualArts · 2004 · PC</div>
-        <div class="vn-status vn-done">✓ Completa</div>
-      </div>
+      <div class="vn-cover-wrap"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/324160/header.jpg?t=1770337441" loading="lazy"><div class="vn-badge vn-badge-fav">★ Favorita</div><div class="vn-score">9.8</div></div>
+      <div class="vn-body"><div class="vn-title">Clannad</div><div class="vn-tags-row"><span class="vn-tag">Romance</span><span class="vn-tag">Drama</span></div><div class="vn-meta">VisualArts · 2004 · PC</div><div class="vn-status vn-done">✓ Completa</div></div>
     </div>
-
     <div class="vn-card" data-tags="suspense horror" data-name="danganronpa">
-      <div class="vn-cover-wrap">
-        <img src="https://static.wikia.nocookie.net/danganronpa/images/1/12/Danganronpa_Visual_Fanbook_%28Front_Cover%29.png/revision/latest?cb=20180126171146" loading="lazy">
-        <div class="vn-score">9</div>
-      </div>
-      <div class="vn-body">
-        <div class="vn-title">Danganronpa</div>
-        <div class="vn-tags-row"><span class="vn-tag">Suspense</span><span class="vn-tag">Horror</span></div>
-        <div class="vn-meta">Spike Chunsoft · 2010 · PSP</div>
-        <div class="vn-status vn-done">✓ Completa</div>
-      </div>
+      <div class="vn-cover-wrap"><img src="https://static.wikia.nocookie.net/danganronpa/images/1/12/Danganronpa_Visual_Fanbook_%28Front_Cover%29.png/revision/latest?cb=20180126171146" loading="lazy"><div class="vn-score">9</div></div>
+      <div class="vn-body"><div class="vn-title">Danganronpa</div><div class="vn-tags-row"><span class="vn-tag">Suspense</span><span class="vn-tag">Horror</span></div><div class="vn-meta">Spike Chunsoft · 2010 · PSP</div><div class="vn-status vn-done">✓ Completa</div></div>
     </div>
   </div>
 
@@ -1085,13 +824,11 @@
     <span class="vn-fq-text">「 Toda escolha tem um peso. 」</span>
     <span class="vn-fq-line"></span>
   </div>
-
 </div>
 </div>
 
 </main>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <div class="ft-logo">📺 TODDY · ANIME WORLD</div>
   <div class="ft-sub">© 2026 · <a href="https://myanimelist.net/profile/XxT0DDyxX" target="_blank">MAL: XxT0DDyxX</a></div>

@@ -373,16 +373,46 @@ main { padding-top: 56px; padding-bottom: 66px; }
 .search-clr:hover { color: var(--pink); }
 
 /* ── CHIPS ── */
-.chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 36px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
 .chip {
-  font-family: 'Orbitron', sans-serif; font-size: .56rem;
+  font-family: 'Orbitron', sans-serif; font-size: .54rem;
   letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--muted); background: var(--bg2);
-  border: 1px solid var(--border); padding: 5px 13px;
-  border-radius: 2px; cursor: pointer; transition: .2s;
+  border: 1px solid var(--border); padding: 6px 14px;
+  border-radius: 20px; cursor: pointer; transition: .25s;
+  display: flex; align-items: center; gap: 7px;
+  position: relative; overflow: hidden;
 }
-.chip:hover { color: var(--text); border-color: rgba(255,255,255,.12); }
-.chip.on    { color: var(--pink); border-color: rgba(255,60,142,.4); background: rgba(255,60,142,.07); }
+.chip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  opacity: 0; transition: .25s;
+}
+.chip:hover { color: #fff; border-color: rgba(255,60,142,.35); transform: translateY(-1px); }
+.chip:hover::before { opacity: .08; }
+.chip.on {
+  color: #fff;
+  border-color: rgba(255,60,142,.6);
+  background: linear-gradient(135deg, rgba(255,60,142,.2), rgba(155,93,229,.15));
+  box-shadow: 0 0 14px rgba(255,60,142,.2);
+}
+.chip.on::before { opacity: 0; }
+
+/* Badge contador dentro do chip */
+.chip-count {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: .75rem; line-height: 1;
+  background: rgba(255,255,255,.08);
+  color: inherit;
+  padding: 1px 6px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.1);
+  transition: .25s;
+}
+.chip.on .chip-count {
+  background: rgba(255,60,142,.3);
+  border-color: rgba(255,60,142,.4);
+}
 
 .no-results {
   text-align: center; padding: 56px 0;
@@ -391,39 +421,81 @@ main { padding-top: 56px; padding-bottom: 66px; }
   display: none;
 }
 
+/* ── GENRE STAT BAR ── */
+.genre-stat-bar {
+  display: flex;
+  background: linear-gradient(135deg, rgba(255,60,142,.06), rgba(155,93,229,.06));
+  border: 1px solid rgba(255,60,142,.15);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.gsb-item {
+  flex: 1; padding: 14px 12px; text-align: center;
+  display: flex; flex-direction: column; gap: 4px;
+  border-right: 1px solid rgba(255,255,255,.05);
+  transition: .2s;
+}
+.gsb-item:last-child { border-right: none; }
+.gsb-item:hover { background: rgba(255,255,255,.03); }
+.gsb-n     { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; line-height: 1; color: var(--pink); text-shadow: 0 0 12px rgba(255,60,142,.35); }
+.gsb-item small { font-size: .5rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
 /* ── GENRE BLOCK ── */
-.gblock { margin-bottom: 44px; }
+.gblock { margin-bottom: 52px; }
 .gblock-title {
   font-family: 'Orbitron', sans-serif; font-size: .68rem;
   letter-spacing: 3px; text-transform: uppercase;
-  color: var(--cyan); margin-bottom: 14px;
+  color: var(--cyan); margin-bottom: 18px;
   display: flex; align-items: center; gap: 12px;
 }
 .gblock-title::before { content: ''; width: 3px; height: 14px; background: var(--cyan); border-radius: 1px; flex-shrink: 0; }
 .gblock-title::after  { content: ''; flex: 1; height: 1px; background: rgba(0,229,255,.12); }
 
+/* Contador de animes no título do bloco */
+.gblock-count {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: .9rem; line-height: 1;
+  color: rgba(0,229,255,.5);
+  background: rgba(0,229,255,.06);
+  border: 1px solid rgba(0,229,255,.15);
+  padding: 2px 9px; border-radius: 10px;
+  flex-shrink: 0;
+}
+
 /* ── ANIME GRID ── */
-.ag { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 12px; }
+.ag { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px,1fr)); gap: 14px; }
 .ac {
   background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 5px; overflow: hidden; transition: .3s;
+  border-radius: 8px; overflow: hidden; transition: .35s cubic-bezier(.34,1.1,.64,1);
   position: relative; cursor: default;
 }
+/* Gradiente lateral colorido no hover */
 .ac::before {
   content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--pink), var(--purple));
-  transform: scaleX(0); transform-origin: left; transition: .3s;
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--purple), var(--cyan));
+  transform: scaleX(0); transform-origin: left; transition: .35s;
+  z-index: 1;
 }
-.ac:hover { transform: translateY(-8px); border-color: rgba(255,60,142,.35); box-shadow: 0 16px 32px rgba(255,60,142,.15); }
+/* Brilho de fundo no hover */
+.ac::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(255,60,142,.06) 0%, transparent 60%);
+  opacity: 0; transition: .35s;
+}
+.ac:hover { transform: translateY(-10px); border-color: rgba(255,60,142,.4); box-shadow: 0 20px 40px rgba(255,60,142,.18); }
 .ac:hover::before { transform: scaleX(1); }
-.ac img { width: 100%; height: 200px; object-fit: cover; display: block; transition: .3s; }
-.ac:hover img { filter: brightness(1.08); }
-.ac-info  { padding: 9px 10px 12px; }
-.ac-tag   { font-size: .56rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
-.tag-best { color: var(--gold); }
-.tag-top  { color: var(--pink); }
-.ac-name  { font-size: .82rem; font-weight: 700; color: #fff; line-height: 1.3; }
+.ac:hover::after  { opacity: 1; }
+.ac img { width: 100%; height: 210px; object-fit: cover; display: block; transition: .4s; }
+.ac:hover img { filter: brightness(1.1) saturate(1.1); transform: scale(1.03); }
+
+.ac-info  { padding: 10px 12px 14px; position: relative; z-index: 1; }
+.ac-tag   { font-size: .52rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; display: inline-block; padding: 2px 8px; border-radius: 10px; }
+.tag-best { color: var(--gold); background: rgba(255,216,77,.1); border: 1px solid rgba(255,216,77,.25); }
+.tag-top  { color: var(--pink); background: rgba(255,60,142,.08); border: 1px solid rgba(255,60,142,.2); }
+.ac-name  { font-size: .84rem; font-weight: 700; color: #fff; line-height: 1.35; }
 
 /* ── TOP LIST ── */
 .top-list { display: flex; flex-direction: column; gap: 8px; }

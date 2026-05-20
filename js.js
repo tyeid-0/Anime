@@ -181,6 +181,47 @@ function syncMarcosStats({ completed, episodes, days }) {
 // ─── GÊNEROS SEARCH/FILTER ────────────────────
 let activeChip = 'todos';
 
+// Calcula e injeta contadores nos chips e títulos de bloco
+function initGenreCounts() {
+  const allCards = document.querySelectorAll('#gbox .ac');
+  const genres   = ['todos','acao','drama','romance','comedia','fantasia','scifi',
+                    'terror','psicologico','isekai','gore','mahou','dark','musical','survival'];
+
+  // Contador total
+  const totalEl = document.getElementById('gsb-total');
+  if (totalEl) totalEl.textContent = allCards.length;
+
+  // Contador de gêneros únicos visíveis
+  const genresEl = document.getElementById('gsb-genres');
+  if (genresEl) genresEl.textContent = document.querySelectorAll('#gbox .gblock').length;
+
+  // Contador visíveis (começa com todos)
+  updateVisibleCount();
+
+  // Preenche chips
+  genres.forEach(g => {
+    const el = document.getElementById('cnt-' + g);
+    if (!el) return;
+    if (g === 'todos') { el.textContent = allCards.length; return; }
+    let cnt = 0;
+    allCards.forEach(card => { if ((card.dataset.tags || '').includes(g)) cnt++; });
+    el.textContent = cnt;
+  });
+
+  // Preenche contadores nos títulos de bloco
+  document.querySelectorAll('#gbox .gblock').forEach(block => {
+    const cnt  = block.querySelectorAll('.ac').length;
+    const span = block.querySelector('.gblock-count');
+    if (span) span.textContent = cnt;
+  });
+}
+
+function updateVisibleCount() {
+  const visible = document.querySelectorAll('#gbox .ac:not([style*="display: none"]):not([style*="display:none"])').length;
+  const el = document.getElementById('gsb-visible');
+  if (el) el.textContent = visible;
+}
+
 function doSearch(value) { applyFilter(value.toLowerCase().trim(), activeChip); }
 function clearSrch() {
   document.getElementById('srch').value = '';
@@ -188,7 +229,7 @@ function clearSrch() {
 }
 function filterChip(genre, el) {
   activeChip = genre;
-  document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+  document.querySelectorAll('#genre-chips .chip').forEach(c => c.classList.remove('on'));
   el.classList.add('on');
   applyFilter(document.getElementById('srch').value.toLowerCase().trim(), genre);
 }
@@ -197,18 +238,24 @@ function applyFilter(text, genre) {
   document.querySelectorAll('#gbox .gblock').forEach(block => {
     const blockGenres = block.dataset.g || '';
     let blockVisible  = false;
+    let blockCount    = 0;
     block.querySelectorAll('.ac').forEach(card => {
       const name    = (card.dataset.name || '').toLowerCase();
       const tags    = (card.dataset.tags || '').toLowerCase();
       const visible = (!text || name.includes(text) || tags.includes(text))
                    && (genre === 'todos' || (tags.includes(genre) && blockGenres.includes(genre)));
       card.style.display = visible ? '' : 'none';
-      if (visible) blockVisible = true;
+      if (visible) { blockVisible = true; blockCount++; }
     });
     block.style.display = blockVisible ? '' : 'none';
     if (blockVisible) anyVisible = true;
+
+    // Atualiza contador do bloco com o total visível
+    const span = block.querySelector('.gblock-count');
+    if (span) span.textContent = blockCount;
   });
   document.getElementById('no-res').style.display = anyVisible ? 'none' : 'block';
+  updateVisibleCount();
 }
 
 // ─── MAL CONFIG ───────────────────────────────
@@ -631,3 +678,4 @@ function vnApply(text) {
 // ─── INIT ─────────────────────────────────────
 loadWatching();
 loadTopScores();
+initGenreCounts();

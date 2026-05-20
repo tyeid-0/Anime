@@ -270,29 +270,36 @@
     <button class="search-clr" onclick="clearSrch()">✕</button>
   </div>
 
-  <div class="chips">
-    <button class="chip on" onclick="filterChip('todos',this)">Todos</button>
-    <button class="chip" onclick="filterChip('acao',this)">🔥 Ação</button>
-    <button class="chip" onclick="filterChip('drama',this)">🎭 Drama</button>
-    <button class="chip" onclick="filterChip('romance',this)">💖 Romance</button>
-    <button class="chip" onclick="filterChip('comedia',this)">😂 Comédia</button>
-    <button class="chip" onclick="filterChip('fantasia',this)">🪄 Fantasia</button>
-    <button class="chip" onclick="filterChip('scifi',this)">🚀 Sci-Fi</button>
-    <button class="chip" onclick="filterChip('terror',this)">👁️ Terror</button>
-    <button class="chip" onclick="filterChip('psicologico',this)">🧠 Psicológico</button>
-    <button class="chip" onclick="filterChip('isekai',this)">🌀 Isekai</button>
-    <button class="chip" onclick="filterChip('gore',this)">🩸 Gore</button>
-    <button class="chip" onclick="filterChip('mahou',this)">🧙‍♀️ Mahou</button>
-    <button class="chip" onclick="filterChip('dark',this)">🌑 Dark</button>
-    <button class="chip" onclick="filterChip('musical',this)">🎸 Musical</button>
-    <button class="chip" onclick="filterChip('survival',this)">☠️ Survival</button>
+  <div class="chips" id="genre-chips">
+    <button class="chip on" onclick="filterChip('todos',this)" data-genre="todos">Todos <span class="chip-count" id="cnt-todos">—</span></button>
+    <button class="chip" onclick="filterChip('acao',this)" data-genre="acao">🔥 Ação <span class="chip-count" id="cnt-acao">—</span></button>
+    <button class="chip" onclick="filterChip('drama',this)" data-genre="drama">🎭 Drama <span class="chip-count" id="cnt-drama">—</span></button>
+    <button class="chip" onclick="filterChip('romance',this)" data-genre="romance">💖 Romance <span class="chip-count" id="cnt-romance">—</span></button>
+    <button class="chip" onclick="filterChip('comedia',this)" data-genre="comedia">😂 Comédia <span class="chip-count" id="cnt-comedia">—</span></button>
+    <button class="chip" onclick="filterChip('fantasia',this)" data-genre="fantasia">🪄 Fantasia <span class="chip-count" id="cnt-fantasia">—</span></button>
+    <button class="chip" onclick="filterChip('scifi',this)" data-genre="scifi">🚀 Sci-Fi <span class="chip-count" id="cnt-scifi">—</span></button>
+    <button class="chip" onclick="filterChip('terror',this)" data-genre="terror">👁️ Terror <span class="chip-count" id="cnt-terror">—</span></button>
+    <button class="chip" onclick="filterChip('psicologico',this)" data-genre="psicologico">🧠 Psicológico <span class="chip-count" id="cnt-psicologico">—</span></button>
+    <button class="chip" onclick="filterChip('isekai',this)" data-genre="isekai">🌀 Isekai <span class="chip-count" id="cnt-isekai">—</span></button>
+    <button class="chip" onclick="filterChip('gore',this)" data-genre="gore">🩸 Gore <span class="chip-count" id="cnt-gore">—</span></button>
+    <button class="chip" onclick="filterChip('mahou',this)" data-genre="mahou">🧙‍♀️ Mahou <span class="chip-count" id="cnt-mahou">—</span></button>
+    <button class="chip" onclick="filterChip('dark',this)" data-genre="dark">🌑 Dark <span class="chip-count" id="cnt-dark">—</span></button>
+    <button class="chip" onclick="filterChip('musical',this)" data-genre="musical">🎸 Musical <span class="chip-count" id="cnt-musical">—</span></button>
+    <button class="chip" onclick="filterChip('survival',this)" data-genre="survival">☠️ Survival <span class="chip-count" id="cnt-survival">—</span></button>
+  </div>
+
+  <!-- Stat bar de gêneros -->
+  <div class="genre-stat-bar" id="genre-stat-bar">
+    <div class="gsb-item"><span class="gsb-n" id="gsb-total">—</span><small>Animes no site</small></div>
+    <div class="gsb-item"><span class="gsb-n" id="gsb-genres">—</span><small>Gêneros</small></div>
+    <div class="gsb-item"><span class="gsb-n" id="gsb-visible">—</span><small>Visíveis agora</small></div>
   </div>
 
   <div id="no-res" class="no-results">Nenhum anime encontrado 🔍</div>
 
   <div id="gbox">
     <div class="gblock" data-g="drama romance">
-      <div class="gblock-title">🎭 Drama</div>
+      <div class="gblock-title">🎭 Drama <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="your lie in april shigatsu" data-tags="drama romance musical"><img src="https://media.fstatic.com/Mw25F8CpC59SFxaNANhW3zzCHDw=/350x525/smart/filters:format(webp)/media/movies/covers/2014/11/shigatsu-wa-kimi-no-uso_t106389.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Your Lie in April</p></div></div>
         <div class="ac" data-name="clannad after story" data-tags="drama romance"><img src="https://m.media-amazon.com/images/I/81R8HeREVwL._AC_UF894,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Clannad: After Story</p></div></div>
@@ -307,7 +314,7 @@
     </div>
 
     <div class="gblock" data-g="romance">
-      <div class="gblock-title">💖 Romance</div>
+      <div class="gblock-title">💖 Romance <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="clannad after story romance" data-tags="romance drama"><img src="https://m.media-amazon.com/images/I/81R8HeREVwL._AC_UF894,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Clannad: After Story</p></div></div>
         <div class="ac" data-name="kaguya sama wa kokurasetai" data-tags="romance comedia"><img src="https://myanimelist.net/images/anime/1295/106551.webp" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Kaguya-sama</p></div></div>
@@ -315,7 +322,7 @@
     </div>
 
     <div class="gblock" data-g="acao">
-      <div class="gblock-title">🔥 Ação</div>
+      <div class="gblock-title">🔥 Ação <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="fate stay night heavens feel" data-tags="acao fantasia sobrenatural"><img src="https://upload.wikimedia.org/wikipedia/en/7/7c/Fate-stay_night_Heaven%27s_Feel_Trilogy_Poster.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Fate/HF</p></div></div>
         <div class="ac" data-name="vinland saga" data-tags="acao drama historico"><img src="https://m.media-amazon.com/images/M/MV5BNDA3MGNmZTEtMzFiMy00ZmViLThhNmQtMjQ4ZDc5MDEyN2U1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Vinland Saga</p></div></div>
@@ -329,7 +336,7 @@
     </div>
 
     <div class="gblock" data-g="comedia">
-      <div class="gblock-title">😂 Comédia</div>
+      <div class="gblock-title">😂 Comédia <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="seto no hanayome mermaid comedy" data-tags="comedia romance harem"><img src="https://m.media-amazon.com/images/M/MV5BY2NmYjk1Y2EtMjNhZi00ZDVjLTg4YzAtZDA5MGY1NGYxMDIxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Seto no Hanayome</p></div></div>
         <div class="ac" data-name="bocchi the rock" data-tags="comedia musical slice"><img src="https://m.media-amazon.com/images/I/81ScRXWN6DL._AC_UF1000,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Bocchi the Rock!</p></div></div>
@@ -339,7 +346,7 @@
     </div>
 
     <div class="gblock" data-g="fantasia">
-      <div class="gblock-title">🪄 Fantasia</div>
+      <div class="gblock-title">🪄 Fantasia <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="fullmetal alchemist brotherhood" data-tags="fantasia acao aventura"><img src="https://cdn.myanimelist.net/images/anime/1223/96541.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">FMA: Brotherhood</p></div></div>
         <div class="ac" data-name="frieren beyond journey end" data-tags="fantasia drama slice"><img src="https://myanimelist.net/images/anime/1015/138006.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Frieren</p></div></div>
@@ -352,7 +359,7 @@
     </div>
 
     <div class="gblock" data-g="scifi">
-      <div class="gblock-title">🚀 Sci-Fi</div>
+      <div class="gblock-title">🚀 Sci-Fi <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="steins gate time travel" data-tags="scifi thriller drama"><img src="https://m.media-amazon.com/images/M/MV5BZjI1YjZiMDUtZTI3MC00YTA5LWIzMmMtZmQ0NTZiYWM4NTYwXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Steins;Gate</p></div></div>
         <div class="ac" data-name="vivy fluorite eye song" data-tags="scifi musical drama"><img src="https://m.media-amazon.com/images/M/MV5BNjA1MzlhOWEtYmQ1OC00MTUwLTliZDQtNGRlYmE4ZTVmMWQxXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Vivy</p></div></div>
@@ -363,7 +370,7 @@
     </div>
 
     <div class="gblock" data-g="terror">
-      <div class="gblock-title">👁️ Terror / Horror</div>
+      <div class="gblock-title">👁️ Terror / Horror <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="higurashi no naku koro ni when they cry" data-tags="terror psicologico gore"><img src="https://cdn.myanimelist.net/images/anime/12/19634.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Higurashi</p></div></div>
         <div class="ac" data-name="serial experiments lain horror" data-tags="terror psicologico scifi"><img src="https://m.media-amazon.com/images/M/MV5BZGJiMmEyMDMtMTJlZi00YTgwLWI1ODgtZDA1YjEyM2Q5MjI3XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Serial Experiments Lain</p></div></div>
@@ -372,7 +379,7 @@
     </div>
 
     <div class="gblock" data-g="psicologico">
-      <div class="gblock-title">🧠 Psicológico</div>
+      <div class="gblock-title">🧠 Psicológico <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="serial experiments lain psych" data-tags="psicologico terror scifi"><img src="https://m.media-amazon.com/images/M/MV5BZGJiMmEyMDMtMTJlZi00YTgwLWI1ODgtZDA1YjEyM2Q5MjI3XkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Serial Experiments Lain</p></div></div>
         <div class="ac" data-name="higurashi psicologico" data-tags="psicologico terror gore"><img src="https://cdn.myanimelist.net/images/anime/12/19634.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Higurashi</p></div></div>
@@ -383,7 +390,7 @@
     </div>
 
     <div class="gblock" data-g="isekai">
-      <div class="gblock-title">🌀 Isekai</div>
+      <div class="gblock-title">🌀 Isekai <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="re zero isekai" data-tags="isekai drama fantasia"><img src="https://cdn.myanimelist.net/images/anime/11/79410.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Re:Zero</p></div></div>
         <div class="ac" data-name="grimgar fantasy ash isekai" data-tags="isekai drama fantasia acao"><img src="https://m.media-amazon.com/images/M/MV5BMmUyNzNmMDEtNjYzYi00ZDcwLTg4NTQtZTUzYzBiZTYwNzYyXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Grimgar</p></div></div>
@@ -395,7 +402,7 @@
     </div>
 
     <div class="gblock" data-g="gore">
-      <div class="gblock-title">🩸 Gore</div>
+      <div class="gblock-title">🩸 Gore <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="elfen lied gore" data-tags="gore drama terror psicologico"><img src="https://myanimelist.net/images/anime/1780/121555.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Elfen Lied</p></div></div>
         <div class="ac" data-name="higurashi gore" data-tags="gore terror psicologico"><img src="https://cdn.myanimelist.net/images/anime/12/19634.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Higurashi</p></div></div>
@@ -404,14 +411,14 @@
     </div>
 
     <div class="gblock" data-g="mahou">
-      <div class="gblock-title">🧙‍♀️ Mahou Shoujo</div>
+      <div class="gblock-title">🧙‍♀️ Mahou Shoujo <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="puella magi madoka magica mahou" data-tags="mahou dark drama psicologico"><img src="https://myanimelist.net/images/anime/11/55225.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Madoka Magica</p></div></div>
       </div>
     </div>
 
     <div class="gblock" data-g="dark">
-      <div class="gblock-title">🌑 Dark Fantasy</div>
+      <div class="gblock-title">🌑 Dark Fantasy <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="made in abyss dark" data-tags="dark fantasia aventura drama"><img src="https://m.media-amazon.com/images/S/pv-target-images/acf77e7193251c237654b4ab7a3f83720d8703a416927e8d38a5c55ca0883898._SX1080_FMjpg_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Made in Abyss</p></div></div>
         <div class="ac" data-name="dororo dark samurai" data-tags="dark acao historico"><img src="https://m.media-amazon.com/images/M/MV5BYzk2ODAyZjctNjExNS00ZDk0LWE1ZDMtZmIyNzI2NjNjNjllXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Dororo</p></div></div>
@@ -420,14 +427,14 @@
     </div>
 
     <div class="gblock" data-g="survival">
-      <div class="gblock-title">☠️ Survival</div>
+      <div class="gblock-title">☠️ Survival <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="attack on titan shingeki survival" data-tags="survival acao dark drama"><img src="https://cdn.myanimelist.net/images/anime/10/47347.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Melhor</p><p class="ac-name">Attack on Titan</p></div></div>
       </div>
     </div>
 
     <div class="gblock" data-g="musical">
-      <div class="gblock-title">🎸 Musical</div>
+      <div class="gblock-title">🎸 Musical <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="bocchi the rock musical" data-tags="musical comedia slice"><img src="https://m.media-amazon.com/images/I/81ScRXWN6DL._AC_UF1000,1000_QL80_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Melhor</p><p class="ac-name">Bocchi the Rock!</p></div></div>
         <div class="ac" data-name="vivy fluorite eye song musical" data-tags="musical scifi drama"><img src="https://m.media-amazon.com/images/M/MV5BNjA1MzlhOWEtYmQ1OC00MTUwLTliZDQtNGRlYmE4ZTVmMWQxXkEyXkFqcGc@._V1_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-top">Top</p><p class="ac-name">Vivy</p></div></div>
@@ -437,7 +444,7 @@
     </div>
 
     <div class="gblock" data-g="misterio aventura escolar militar historico mecha sobrenatural esporte harem slice">
-      <div class="gblock-title">🔍 Outros Gêneros</div>
+      <div class="gblock-title">🔍 Outros Gêneros <span class="gblock-count"></span></div>
       <div class="ag">
         <div class="ac" data-name="summertime rendering misterio" data-tags="misterio thriller"><img src="https://m.media-amazon.com/images/M/MV5BNjhmN2RmYjgtN2ZlNC00YTdkLWFlMTYtMTdkNzkxMDA0ZjJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Mistério</p><p class="ac-name">Summertime Rendering</p></div></div>
         <div class="ac" data-name="haikyuu esporte volei" data-tags="esporte drama"><img src="https://cdn.myanimelist.net/images/anime/7/76014.jpg" loading="lazy"><div class="ac-info"><p class="ac-tag tag-best">Esporte</p><p class="ac-name">Haikyuu!!</p></div></div>

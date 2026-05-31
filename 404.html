@@ -123,6 +123,61 @@
     <p>Carregando perfil MAL…</p>
   </div>
 
+  <div class="mal-section-label">▶ Em andamento agora</div>
+
+  <div class="watch-toolbar">
+    <div class="search-bar" style="flex:1;margin-bottom:0">
+      <span class="search-ico">🔍</span>
+      <input id="w-srch" type="text" placeholder="Buscar na lista..." oninput="filterWatch(this.value)">
+      <button class="search-clr" onclick="document.getElementById('w-srch').value='';filterWatch('')">✕</button>
+    </div>
+    <select id="w-sort" class="w-select" onchange="sortWatch(this.value)">
+      <option value="default">Ordem MAL</option>
+      <option value="recent">Mais Recente</option>
+      <option value="score">Maior Score</option>
+      <option value="alpha">A → Z</option>
+      <option value="ep">Mais Eps</option>
+    </select>
+    <button class="btn-cy watch-refresh" onclick="loadWatching(true)">↺ Atualizar</button>
+  </div>
+
+  <div id="w-stats" class="watch-stats" style="display:none">
+    <div class="ws-item"><span id="ws-total">—</span><small>Assistindo</small></div>
+    <div class="ws-item"><span id="ws-eps">—</span><small>Eps vistos</small></div>
+    <div class="ws-item"><span id="ws-avg">—</span><small>Score médio</small></div>
+  </div>
+
+  <div id="w-recent" style="display:none">
+    <div class="rc-label">🕐 Últimos assistidos</div>
+    <div id="w-recent-cards" class="rc-wrap"></div>
+  </div>
+
+  <div id="w-loading" class="watch-loading">
+    <div class="wl-spinner"></div>
+    <p>Buscando lista no MyAnimeList…</p>
+  </div>
+  <div id="w-error" class="watch-error" style="display:none">
+    <p>⚠️ Não foi possível carregar a lista.</p>
+    <button class="btn-cy" onclick="loadWatching(true)">Tentar novamente</button>
+  </div>
+
+  <div id="w-table-wrap" style="display:none">
+    <table class="wtable" id="w-table">
+      <thead>
+        <tr>
+          <th style="width:40px">#</th>
+          <th style="width:58px"></th>
+          <th>Anime</th>
+          <th style="width:120px">Progresso</th>
+          <th style="width:68px">Score</th>
+          <th style="width:88px">Tipo</th>
+        </tr>
+      </thead>
+      <tbody id="w-tbody"></tbody>
+    </table>
+  </div>
+  <div id="w-empty" class="no-results" style="display:none">Nenhum anime encontrado 🔍</div>
+
   <div id="top-scores-wrap" style="display:none;margin-top:48px">
     <div class="mal-section-label">🏆 Seus melhores avaliados</div>
     <div id="top-scores-grid" class="top-grid"></div>

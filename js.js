@@ -1,5 +1,22 @@
 'use strict';
 
+// ─── URL HASH — navegação por link direto ─────
+const VALID_TABS = ['assistindo','top','generos','favchars','primeiros','musicas','marcos','gacha','vn'];
+
+function getHashTab() {
+  const hash = location.hash.replace('#', '');
+  return VALID_TABS.includes(hash) ? hash : null;
+}
+
+function setHash(id) {
+  history.replaceState(null, '', '#' + id);
+}
+
+window.addEventListener('hashchange', () => {
+  const tab = getHashTab();
+  if (tab) _show(tab);
+});
+
 // ─── DRAWER ───────────────────────────────────
 function toggleDrawer() {
   document.getElementById('drawer').classList.contains('open') ? closeDrawer() : openDrawer();
@@ -23,7 +40,6 @@ function navFromDrawer(id, label) {
   document.querySelectorAll('.drawer-item').forEach(b => b.classList.remove('active'));
   const btn = document.querySelector(`.drawer-item[onclick*="'${id}'"]`);
   if (btn) btn.classList.add('active');
-  if (id === 'assistindo') initAssistindo();
 }
 
 // ─── BOTTOM NAV ───────────────────────────────
@@ -38,11 +54,11 @@ function navTo(id, el) {
   if (label) document.getElementById('page-title').textContent = label;
   show(id);
   closeMore();
-  if (id === 'assistindo') initAssistindo();
 }
 
 // ─── TABS ─────────────────────────────────────
-function show(id) {
+// _show: lógica pura (sem lazy load)
+function _show(id) {
   document.querySelectorAll('.tab').forEach(t => {
     t.classList.remove('on');
     t.style.display = 'none';
@@ -52,6 +68,13 @@ function show(id) {
   tab.style.display = 'block';
   tab.classList.add('on');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// show: _show + lazy load + hash
+function show(id) {
+  _show(id);
+  setHash(id);
+  if (id === 'assistindo') initAssistindo();
 }
 
 // ─── TOP 30 DATA ──────────────────────────────
@@ -74,7 +97,7 @@ const TOP = [
   { n: 'To Be Hero X',                            g: 'Ação · Super-herói',        c: '#f4c542', tags: 'acao comedia drama',                  img: 'https://preview.redd.it/to-be-hero-x-v0-mmibd27ecwue1.jpeg?auto=webp&s=bff6029e1f619c57ea605fdc23b0e7131188335a' },
   { n: '86 -Eighty Six-',                         g: 'Sci-Fi · Guerra',           c: '#e63946', tags: 'scifi acao drama',                     img: 'https://m.media-amazon.com/images/M/MV5BOWNmY2IzOGItMmQyNy00ZTM0LThiNjItODM3YzdkYjRlNWU1XkEyXkFqcGc@._V1_.jpg' },
   { n: 'BNA: Brand New Animal',                   g: 'Ação · Kemono',             c: '#f4c542', tags: 'acao fantasia aventura',                img: 'https://m.media-amazon.com/images/M/MV5BMzUxMzAxYTMtMmYzOS00YzYyLWE2ZDUtYmQxZDhiNWIxNDNiXkEyXkFqcGc@._V1_.jpg' },
-  { n: 'Lord of Mysteries',                           g: 'Ação · Fantasia',           c: '#a07fff', tags: 'acao fantasia aventura dark',          img: 'https://m.media-amazon.com/images/M/MV5BMWE1ZWYwZGUtZjRmOS00NzUzLTlkZmUtMTEwMjNhNTVmNDIwXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg' },
+  { n: 'Lord of Mysteries',                       g: 'Ação · Fantasia',           c: '#a07fff', tags: 'acao fantasia aventura dark',          img: 'https://m.media-amazon.com/images/M/MV5BMWE1ZWYwZGUtZjRmOS00NzUzLTlkZmUtMTEwMjNhNTVmNDIwXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg' },
   { n: "Fate/Stay Night: Heaven's Feel",          g: 'Ação · Sobrenatural',       c: '#a07fff', tags: 'acao fantasia drama romance',          img: 'https://upload.wikimedia.org/wikipedia/en/7/7c/Fate-stay_night_Heaven%27s_Feel_Trilogy_Poster.jpg' },
   { n: 'Tengen Toppa Gurren Lagann',              g: 'Mecha · Ação',              c: '#e63946', tags: 'acao fantasia aventura drama',          img: 'https://m.media-amazon.com/images/M/MV5BMGJlODA2ZmItOTRiZS00NWM5LWJlNTQtYzI5MTNiZjA2MGFjXkEyXkFqcGc@._V1_.jpg' },
   { n: 'Majo no Tabitabi',                        g: 'Fantasia · Aventura',       c: '#39ff14', tags: 'fantasia aventura isekai slice',       img: 'https://myanimelist.net/images/anime/1802/108501.jpg' },
@@ -85,7 +108,7 @@ const TOP = [
   { n: 'Akiba Meido Sensou',                      g: 'Comédia · Ação',            c: '#e63946', tags: 'comedia acao',                          img: 'https://m.media-amazon.com/images/M/MV5BYzA5YmZlNzMtYjdlZC00ZDg0LTgyMjEtNTZhYTFmYzJkNTg1XkEyXkFqcGc@._V1_.jpg' },
   { n: 'Maoujou de Oyasumi',                      g: 'Comédia · Fantasia',        c: '#ff7eb3', tags: 'comedia fantasia slice',               img: 'https://static.wikia.nocookie.net/sleepy-princess/images/3/3b/Anime_Key_Visual.png/revision/latest/smart/width/250/height/250?cb=20200903041445' },
   { n: 'Somali to Mori no Kamisama',              g: 'Aventura · Slice of Life',  c: '#39ff14', tags: 'aventura fantasia drama slice',        img: 'https://m.media-amazon.com/images/M/MV5BMGI5NzcyYmItNjI1ZS00YWU4LWE1ODYtYmZhN2E1YmU1MTk4XkEyXkFqcGc@._V1_.jpg' },
-  { n: 'Azul Perfeito',              g: 'Aventura · Slice of Life',  c: '#5e14ff', tags: 'Drama , Terror , Suspense, Psicológico ',        img: 'https://cdn.myanimelist.net/images/anime/1254/134212.jpg' },
+  { n: 'Azul Perfeito',                           g: 'Drama · Terror',            c: '#5e14ff', tags: 'drama terror suspense psicologico',    img: 'https://cdn.myanimelist.net/images/anime/1254/134212.jpg' },
 ];
 
 // ─── PÓDIO ────────────────────────────────────
@@ -181,24 +204,19 @@ function syncMarcosStats({ completed, episodes, days }) {
 // ─── GÊNEROS SEARCH/FILTER ────────────────────
 let activeChip = 'todos';
 
-// Calcula e injeta contadores nos chips e títulos de bloco
 function initGenreCounts() {
   const allCards = document.querySelectorAll('#gbox .ac');
   const genres   = ['todos','acao','drama','romance','comedia','fantasia','scifi',
                     'terror','psicologico','isekai','gore','mahou','dark','musical','survival'];
 
-  // Contador total
   const totalEl = document.getElementById('gsb-total');
   if (totalEl) totalEl.textContent = allCards.length;
 
-  // Contador de gêneros únicos visíveis
   const genresEl = document.getElementById('gsb-genres');
   if (genresEl) genresEl.textContent = document.querySelectorAll('#gbox .gblock').length;
 
-  // Contador visíveis (começa com todos)
   updateVisibleCount();
 
-  // Preenche chips
   genres.forEach(g => {
     const el = document.getElementById('cnt-' + g);
     if (!el) return;
@@ -208,7 +226,6 @@ function initGenreCounts() {
     el.textContent = cnt;
   });
 
-  // Preenche contadores nos títulos de bloco
   document.querySelectorAll('#gbox .gblock').forEach(block => {
     const cnt  = block.querySelectorAll('.ac').length;
     const span = block.querySelector('.gblock-count');
@@ -250,7 +267,6 @@ function applyFilter(text, genre) {
     block.style.display = blockVisible ? '' : 'none';
     if (blockVisible) anyVisible = true;
 
-    // Atualiza contador do bloco com o total visível
     const span = block.querySelector('.gblock-count');
     if (span) span.textContent = blockCount;
   });
@@ -292,7 +308,8 @@ async function tryFetch(url) {
   throw new Error('Todos os proxies falharam');
 }
 
-// ─── ASSISTINDO ───────────────────────────────
+// ─── ASSISTINDO — lazy load ────────────────────
+// Só carrega quando a aba é aberta pela primeira vez
 let watchData   = [];
 let watchLoaded = false;
 let topData     = [];
@@ -318,7 +335,6 @@ async function fetchAllWatching() {
     if (all.length) return all;
   } catch (_) { all = []; workingProxy = null; }
 
-  // Fallback MAL load.json
   let offset = 0, hasNext = true;
   while (hasNext) {
     const data  = await tryFetch(`https://myanimelist.net/animelist/${MAL_USER}/load.json?status=1&offset=${offset}`);
@@ -612,7 +628,6 @@ async function surpriseMe() {
   btn.classList.add('spinning');
   btn.disabled = true;
   try {
-    // Reutiliza topData se já carregado, senão busca lista completa
     let pool = topData.length ? topData : [];
     if (!pool.length) {
       let all = [], offset = 0, hasNext = true;
@@ -675,7 +690,56 @@ function vnApply(text) {
   document.getElementById('vn-no-res').style.display = anyVisible ? 'none' : 'block';
 }
 
+// ─── QUOTES NO MOBILE (touch toggle) ──────────
+function initQuotesTouch() {
+  document.querySelectorAll('.fc').forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Só ativa em touch (não interfere com hover do desktop)
+      if (!('ontouchstart' in window)) return;
+      // Se clicou num link dentro do card, deixa o link funcionar
+      if (e.target.closest('a')) return;
+      const isOpen = this.classList.contains('quote-open');
+      // Fecha todos os outros
+      document.querySelectorAll('.fc.quote-open').forEach(c => c.classList.remove('quote-open'));
+      if (!isOpen) this.classList.add('quote-open');
+    });
+  });
+}
+
 // ─── INIT ─────────────────────────────────────
-loadWatching();
-loadTopScores();
-initGenreCounts();
+// Determina tab inicial: hash da URL ou padrão 'assistindo'
+(function init() {
+  const startTab = getHashTab() || 'assistindo';
+  _show(startTab);
+  setHash(startTab);
+
+  // Sincroniza o bnav com a tab inicial
+  document.querySelectorAll('.bnav-item').forEach(btn => {
+    const label = btn.dataset.label || '';
+    const bnavTabs = {
+      'Assistindo': 'assistindo',
+      'Top 30': 'top',
+      'Gêneros': 'generos',
+      'Personagens': 'favchars',
+    };
+    if (bnavTabs[label] === startTab) btn.classList.add('on');
+    else btn.classList.remove('on');
+  });
+
+  // Atualiza o page-title no header
+  const labelMap = {
+    assistindo: 'Assistindo', top: 'Top 30', generos: 'Gêneros',
+    favchars: 'Personagens', primeiros: 'Primeiros Animes',
+    musicas: 'Músicas', marcos: 'Marcos', gacha: 'Gacha', vn: 'Visual Novel',
+  };
+  const titleEl = document.getElementById('page-title');
+  if (titleEl) titleEl.textContent = labelMap[startTab] || 'Assistindo';
+
+  // Lazy: só carrega MAL se começar na aba de assistindo
+  if (startTab === 'assistindo') initAssistindo();
+
+  initGenreCounts();
+  initQuotesTouch();
+})();
+
+/* Nota: adicionar no final do style.css */
